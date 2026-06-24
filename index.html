@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Golfens Dag 2026 – Lyngbygaard Golfklub. Prøv golf, mød klubben og kom godt i gang.">
+  <meta name="theme-color" content="#1A4731">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Golfens Dag">
+  <title>Golfens Dag 2026 – Lyngbygaard Golfklub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <button class="back-btn" id="back-btn" aria-label="Tilbage til forsiden">
+      ← Forside
+    </button>
+    <div class="header-logo">⛳ <span>LYG</span></div>
+    <button class="menu-btn" id="menu-btn" aria-label="Åbn menu">☰</button>
+  </header>
+
+  <!-- ===== BURGER MENU ===== -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <div class="nav-menu" id="nav-menu" role="navigation" aria-label="Hovedmenu">
+    <nav>
+      <a href="#" onclick="navigate('home')">🏠 Forside</a>
+      <a href="#" onclick="navigate('program')">📅 Program</a>
+      <a href="https://lyg.dk/traenerteamet/" target="_blank" rel="noopener" onclick="closeMenu()">🏌️ Mød trænerteamet</a>
+      <a href="#" onclick="navigate('begreber')">📖 Golfbegreber</a>
+      <a href="#" onclick="navigate('begynder')">⛳ Begynderforløb</a>
+      <a href="#" onclick="navigate('kontakt')">☎ Kontakt</a>
+      <a href="#" onclick="navigate('om')">🏌️ Om Lyngbygaard Golf</a>
+    </nav>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+
+    <!-- ========================================
+         FORSIDE
+         ======================================== -->
+    <section class="page active" id="page-home">
+
+      <div class="hero">
+        <div class="hero-logo">⛳</div>
+        <h1 class="hero-title">Golfens Dag <span class="hero-year">2026</span></h1>
+        <p class="hero-subtitle">Prøv golf, mød klubben og kom godt i gang.</p>
+        <p class="hero-club">Lyngbygaard Golfklub</p>
+      </div>
+
+      <div class="home-nav">
+        <button class="home-btn" onclick="navigate('program')">
+          <span class="home-btn-icon">📅</span>
+          <span class="home-btn-label">Program</span>
+        </button>
+        <a class="home-btn" href="https://lyg.dk/traenerteamet/" target="_blank" rel="noopener">
+          <span class="home-btn-icon">🏌️</span>
+          <span class="home-btn-label">Mød trænerteamet</span>
+        </a>
+        <button class="home-btn" onclick="navigate('begreber')">
+          <span class="home-btn-icon">📖</span>
+          <span class="home-btn-label">Golfbegreber</span>
+        </button>
+        <button class="home-btn" onclick="navigate('begynder')">
+          <span class="home-btn-icon">⛳</span>
+          <span class="home-btn-label">Begynderforløb</span>
+        </button>
+        <button class="home-btn" onclick="navigate('kontakt')">
+          <span class="home-btn-icon">☎</span>
+          <span class="home-btn-label">Kontakt</span>
+        </button>
+        <button class="home-btn" onclick="navigate('om')">
+          <span class="home-btn-icon">🏌️</span>
+          <span class="home-btn-label">Om Lyngbygaard Golf</span>
+        </button>
+      </div>
+
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+
+    </section>
+
+    <!-- ========================================
+         PROGRAM
+         ======================================== -->
+    <section class="page" id="page-program">
+      <div class="page-header">
+        <h1>📅 Program</h1>
+        <p>Golfens Dag 2026 – Lyngbygaard Golfklub</p>
+      </div>
+      <div class="page-body">
+        <div class="timeline" id="timeline"></div>
+
+        <div class="section-label">Stationer på dagen</div>
+        <div class="stations-grid" id="stations-list"></div>
+
+        <div style="margin-top:2rem">
+          <button class="btn-primary" onclick="navigate('begynder')">⛳ Se begynderforløb</button>
+        </div>
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+    </section>
+
+    <!-- ========================================
+         MØD TRÆNERTEAMET (ekstern – ingen side)
+         ======================================== -->
+
+    <!-- ========================================
+         GOLFBEGREBER
+         ======================================== -->
+    <section class="page" id="page-begreber">
+      <div class="page-header">
+        <h1>📖 Golfbegreber</h1>
+        <p>De vigtigste ord du møder på banen</p>
+      </div>
+      <div class="page-body">
+        <div class="begreber-list" id="begreber-list"></div>
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+    </section>
+
+    <!-- ========================================
+         BEGYNDERFORLØB
+         ======================================== -->
+    <section class="page" id="page-begynder">
+      <div class="page-header">
+        <h1>⛳ Begynderforløb</h1>
+        <p>Start din golfrejse med os</p>
+      </div>
+      <div class="page-body">
+        <div class="courses-list" id="courses-list"></div>
+
+        <a class="btn-primary" href="https://lyg.dk/begyndergolf/#kontakt-form" target="_blank" rel="noopener">
+          ✅ Tilmeld begynderforløb
+        </a>
+
+        <div class="info-box">
+          <h3>Er du i tvivl?</h3>
+          <p>Vi hjælper dig gerne – uanset hvad du undrer dig over.</p>
+          <a class="btn-secondary" href="https://lyg.dk/begyndergolf/#kontakt-form" target="_blank" rel="noopener">
+            Kontakt os
+          </a>
+        </div>
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+    </section>
+
+    <!-- ========================================
+         KONTAKT
+         ======================================== -->
+    <section class="page" id="page-kontakt">
+      <div class="page-header">
+        <h1>☎ Kontakt</h1>
+        <p>Vi er klar til at hjælpe dig</p>
+      </div>
+      <div class="page-body">
+        <div class="kontakt-info">
+          <h2 id="kontakt-name"></h2>
+          <p id="kontakt-address"></p>
+          <p id="kontakt-phone-text"></p>
+          <p id="kontakt-email-text"></p>
+        </div>
+
+        <div class="kontakt-btns">
+          <a class="kontakt-btn" id="btn-ring" href="tel:87441070">
+            <span>📞</span>
+            <span>Ring</span>
+          </a>
+          <button class="kontakt-btn" id="btn-copy-email" onclick="copyEmail()">
+            <span>📋</span>
+            <span>Kopier mail</span>
+          </button>
+          <a class="kontakt-btn" id="btn-sendmail" href="mailto:kontor@lyg.dk">
+            <span>✉️</span>
+            <span>Send mail</span>
+          </a>
+          <a class="kontakt-btn" id="btn-maps" href="https://maps.google.com/?q=Lyngbygaard+Golfklub" target="_blank" rel="noopener">
+            <span>🗺️</span>
+            <span>Rutevejledning</span>
+          </a>
+        </div>
+
+        <div style="margin-top:1rem">
+          <a class="btn-primary" id="btn-website" href="https://lyg.dk" target="_blank" rel="noopener">
+            🌐 Hjemmeside
+          </a>
+        </div>
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+    </section>
+
+    <!-- ========================================
+         OM LYNGBYGAARD GOLF
+         ======================================== -->
+    <section class="page" id="page-om">
+      <div class="page-header">
+        <h1>🏌️ Om Lyngbygaard Golf</h1>
+        <p>Klik for at læse mere</p>
+      </div>
+      <div class="page-body">
+        <div class="om-grid" id="om-grid"></div>
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand<br>
+        <span class="footer-phone"></span><br>
+        <a class="footer-website" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk</a>
+      </footer>
+    </section>
+
+    <!-- ========================================
+         ADMIN
+         ======================================== -->
+    <section class="page" id="page-admin">
+      <div class="page-header">
+        <h1>⚙️ Admin</h1>
+        <p>Rediger indhold og oplysninger</p>
+      </div>
+      <div class="page-body">
+
+        <!-- Login -->
+        <div id="admin-login" class="admin-login-wrap">
+          <h2>🔒 Indtast PIN-kode</h2>
+          <div class="admin-pin-row">
+            <input type="password" inputmode="numeric" maxlength="6"
+                   id="admin-pin-input" placeholder="••••" autocomplete="off">
+            <button class="btn-primary" style="width:auto;padding:.75rem 1.25rem" onclick="checkAdminPin()">OK</button>
+          </div>
+          <p class="pin-error" id="admin-pin-error">Forkert kode – prøv igen</p>
+        </div>
+
+        <!-- Indhold (låst til start) -->
+        <div id="admin-content-wrapper" style="display:none">
+          <div id="admin-content"></div>
+          <p class="admin-saved" id="admin-saved-msg">✓ Gemt</p>
+        </div>
+
+      </div>
+      <footer class="app-footer">
+        <strong>Lyngbygaard Golfklub</strong>
+        Lyngbygårdsvej 29 · 8220 Brabrand
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- ===== INSTALL BANNER ===== -->
+  <div class="install-banner" id="install-btn">
+    <p>📲 Gem appen på din startskærm</p>
+    <button onclick="installApp()">Installér</button>
+  </div>
+
+  <!-- ===== ADMIN GEAR ===== -->
+  <button class="admin-gear" onclick="navigate('admin')" aria-label="Admin">⚙️</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
