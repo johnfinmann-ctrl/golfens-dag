@@ -229,9 +229,8 @@
          ======================================== -->
     <section class="page active" id="page-home" aria-label="Forside">
 
-      <!-- HERO – reduceret højde, cirkelmønster bevaret -->
+      <!-- HERO – kompakt mørkegrøn + cirkelmønster -->
       <div class="hero" id="hero-section">
-        <!-- Cirkelmønster baggrund (SVG-tile) -->
         <div class="hero-pattern" aria-hidden="true">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -242,9 +241,7 @@
             <rect width="100%" height="100%" fill="url(#circles)"/>
           </svg>
         </div>
-
         <div class="hero-content">
-          <!-- Subtil LYG-emblem -->
           <div class="hero-emblem" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -253,20 +250,16 @@
               <path d="M16 2l5 3-5 3"/>
             </svg>
           </div>
-
           <p class="hero-eyebrow">Lyngbygaard Golfklub</p>
-          <h1 class="hero-title">
-            Golfens Dag <span class="hero-year">2026</span>
-          </h1>
+          <h1 class="hero-title">Golfens Dag <span class="hero-year">2026</span></h1>
           <p class="hero-subtitle">Prøv golf, mød klubben og kom godt i gang.</p>
         </div>
       </div>
 
-      <!-- 6 MENUKORT – SVG-ikoner, to kolonner -->
+      <!-- 6 MENUKORT -->
       <div class="home-nav" role="list" aria-label="Menuen">
 
-        <button class="home-btn" role="listitem" onclick="navigate('program')"
-                aria-label="Program">
+        <button class="home-btn" role="listitem" onclick="navigate('program')" aria-label="Program">
           <span class="home-btn-icon-wrap" aria-hidden="true">
             <svg class="home-btn-svg"><use href="#icon-program"/></svg>
           </span>
@@ -282,32 +275,28 @@
           <span class="home-btn-label">Mød trænerteamet</span>
         </a>
 
-        <button class="home-btn" role="listitem" onclick="navigate('begreber')"
-                aria-label="Golfbegreber">
+        <button class="home-btn" role="listitem" onclick="navigate('begreber')" aria-label="Golfbegreber">
           <span class="home-btn-icon-wrap" aria-hidden="true">
             <svg class="home-btn-svg"><use href="#icon-begreber"/></svg>
           </span>
           <span class="home-btn-label">Golfbegreber</span>
         </button>
 
-        <button class="home-btn" role="listitem" onclick="navigate('begynder')"
-                aria-label="Begynderforløb">
+        <button class="home-btn" role="listitem" onclick="navigate('begynder')" aria-label="Begynderforløb">
           <span class="home-btn-icon-wrap" aria-hidden="true">
             <svg class="home-btn-svg"><use href="#icon-begynder"/></svg>
           </span>
           <span class="home-btn-label">Begynderforløb</span>
         </button>
 
-        <button class="home-btn" role="listitem" onclick="navigate('kontakt')"
-                aria-label="Kontakt">
+        <button class="home-btn" role="listitem" onclick="navigate('kontakt')" aria-label="Kontakt">
           <span class="home-btn-icon-wrap" aria-hidden="true">
             <svg class="home-btn-svg"><use href="#icon-kontakt"/></svg>
           </span>
           <span class="home-btn-label">Kontakt</span>
         </button>
 
-        <button class="home-btn" role="listitem" onclick="navigate('om')"
-                aria-label="Om Lyngbygaard Golf">
+        <button class="home-btn" role="listitem" onclick="navigate('om')" aria-label="Om Lyngbygaard Golf">
           <span class="home-btn-icon-wrap" aria-hidden="true">
             <svg class="home-btn-svg"><use href="#icon-om"/></svg>
           </span>
@@ -316,19 +305,23 @@
 
       </div><!-- /home-nav -->
 
-      <!-- SMAL BUNDLINJE (erstatter stor footer) -->
-      <div class="home-strip">
-        <span class="home-strip-name">Lyngbygaard Golfklub</span>
-        <a class="home-strip-link" href="https://lyg.dk" target="_blank" rel="noopener">
-          lyg.dk
-          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor"
-               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M2 10L10 2M4 2h6v6"/>
-          </svg>
-        </a>
+      <!-- GOLF FOTO SEKTION – erstatter den tomme hvide bund -->
+      <div class="home-photo-section" role="img" aria-label="Golfspiller på Lyngbygaard banen">
+        <div class="home-photo-overlay"></div>
+        <div class="home-photo-footer">
+          <span class="home-photo-name">Lyngbygaard Golfklub</span>
+          <a class="home-photo-link" href="https://lyg.dk" target="_blank" rel="noopener">
+            lyg.dk
+            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 10L10 2M4 2h6v6"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
     </section><!-- /home -->
+
 
     <!-- ========================================
          PROGRAM
@@ -360,7 +353,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>
@@ -389,7 +382,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>
@@ -426,7 +419,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>
@@ -485,7 +478,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>
@@ -514,7 +507,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>
@@ -554,7 +547,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.1</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
         </div>
       </footer>
     </section>

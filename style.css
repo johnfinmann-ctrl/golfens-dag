@@ -219,7 +219,7 @@ button { font-family: inherit; }
    ============================================================ */
 .hero {
   background: var(--c-green);
-  padding: 1.6rem 1.25rem 1.5rem;
+  padding: 1.25rem 1.25rem 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -390,31 +390,74 @@ button { font-family: inherit; }
 }
 
 /* ============================================================
-   HOME – SMAL BUNDLINJE (erstatter stor footer)
+   HOME – GOLF FOTO SEKTION (erstatter tom hvid bund)
    ============================================================ */
-.home-strip {
+.home-photo-section {
+  /* Primary: golf-swing (varmt solnedgangslys, sving) */
+  background-image: url('assets/images/golf-swing.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Mobil: spiller er centreret i billedet, lidt til højre */
+  background-position: 55% center;
+
+  /* Fyld resten af skærmen under kortene */
+  min-height: 260px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: .5rem;
+}
+
+/* Diskret gradient overlay i bunden for læsbar footer-tekst */
+.home-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 35, 24, 0.08) 0%,
+    rgba(7, 35, 24, 0.18) 50%,
+    rgba(7, 35, 24, 0.72) 100%
+  );
+  pointer-events: none;
+}
+
+/* Footer tekst oven på foto */
+.home-photo-footer {
+  position: relative; z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .75rem 1.25rem;
-  padding-bottom: max(.75rem, calc(var(--safe-bottom) + .5rem));
-  margin-top: 1rem;
-  border-top: 1px solid var(--c-border);
-  background: var(--c-bg);
+  padding: 1rem 1.25rem;
+  padding-bottom: max(1rem, calc(var(--safe-bottom) + .75rem));
 }
-.home-strip-name {
-  font-size: .75rem;
-  color: var(--c-text2);
-  font-weight: 600;
+.home-photo-name {
+  font-size: .78rem; font-weight: 600;
+  color: rgba(255,255,255,.82);
   letter-spacing: .01em;
 }
-.home-strip-link {
+.home-photo-link {
   display: flex; align-items: center; gap: 4px;
-  font-size: .75rem; font-weight: 600;
-  color: var(--c-green2);
+  font-size: .78rem; font-weight: 700;
+  color: var(--c-gold);
   transition: color var(--ease);
 }
-.home-strip-link:hover { color: var(--c-green); }
+.home-photo-link:hover { color: #d4a94e; }
+
+/* Tablet */
+@media (min-width: 600px) {
+  .home-photo-section {
+    min-height: 320px;
+    background-position: 50% 35%;
+  }
+}
+
+/* iPad landscape / desktop */
+@media (min-width: 900px) {
+  .home-photo-section {
+    min-height: 400px;
+    background-position: 50% 30%;
+  }
+}
 
 /* ============================================================
    PAGE HEADER (undersider)
@@ -742,7 +785,7 @@ button { font-family: inherit; }
 }
 
 @media (min-width: 900px) {
-  .hero { padding: 2rem 2rem 1.75rem; }
+  .hero { padding: 1.5rem 2rem 1.4rem; }
   .hero-title { font-size: 2.5rem; }
   .home-nav { grid-template-columns: repeat(3, 1fr); max-width: 580px; }
   .page-body, .page-header { max-width: 600px; }
