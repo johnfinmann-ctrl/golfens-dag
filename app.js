@@ -90,6 +90,9 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
+const APP_VERSION = '2.1';
+const APP_UPDATED = '2026-08-15';
+
 const STORAGE_KEY = 'golfensdag2026_config';
 
 function loadConfig() {
@@ -140,11 +143,11 @@ function renderHome() {
 function renderProgram() {
   const timeline = document.getElementById('timeline');
   timeline.innerHTML = programItems.map(item => `
-    <div class="timeline-item">
+    <div class="timeline-item" role="listitem">
       <div class="timeline-time">${item.time}</div>
-      <div class="timeline-dot"></div>
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
       <div class="timeline-content">
-        <span class="timeline-icon">${item.icon}</span>
+        <span class="timeline-icon" aria-hidden="true">${item.icon}</span>
         <span class="timeline-title">${item.title}</span>
       </div>
     </div>
@@ -152,29 +155,38 @@ function renderProgram() {
 
   const stationsEl = document.getElementById('stations-list');
   stationsEl.innerHTML = stations.map(s => `
-    <div class="station-chip">⛳ ${s}</div>
+    <div class="station-chip" role="listitem">⛳ ${s}</div>
   `).join('');
 }
 
 function renderBegreber() {
   const list = document.getElementById('begreber-list');
   list.innerHTML = golfTerms.map(t => `
-    <div class="term-card">
-      <div class="term-name">${t.term}</div>
-      <div class="term-def">${t.def}</div>
+    <div class="term-card" role="listitem">
+      <div class="term-badge">${t.term}</div>
+      <div class="term-body">
+        <div class="term-name">${t.term}</div>
+        <div class="term-def">${t.def}</div>
+      </div>
     </div>
   `).join('');
 }
 
 function renderBegynder() {
   const list = document.getElementById('courses-list');
-  list.innerHTML = beginnerCourses.map(c => `
-    <div class="course-card">
-      <div class="course-name">${c.name}</div>
-      ${c.start ? `<div class="course-detail">📅 Start: ${c.start}</div>` : ''}
-      ${c.dates && c.dates.length ? `<div class="course-detail">📆 Datoer: ${c.dates.join(', ')}</div>` : ''}
-      ${c.price ? `<div class="course-detail">💰 Pris: ${c.price}</div>` : ''}
-      ${c.seats ? `<div class="course-detail">🏌️ Pladser: ${c.seats}</div>` : ''}
+  list.innerHTML = beginnerCourses.map((c, i) => `
+    <div class="course-card" role="listitem">
+      <div class="course-card-header">
+        <span class="course-name">${c.name}</span>
+        <span class="course-badge">Hold ${i + 1}</span>
+      </div>
+      <div class="course-card-body">
+        ${c.start ? `<div class="course-detail"><span class="course-detail-icon">📅</span> Start: ${c.start}</div>` : ''}
+        ${c.dates && c.dates.length ? `<div class="course-detail"><span class="course-detail-icon">📆</span> Datoer: ${c.dates.join(', ')}</div>` : ''}
+        ${c.price ? `<div class="course-detail"><span class="course-detail-icon">💰</span> Pris: ${c.price}</div>` : ''}
+        ${c.seats ? `<div class="course-detail"><span class="course-detail-icon">🏌️</span> Pladser: ${c.seats}</div>` : ''}
+        ${!c.start && !c.price && !c.seats ? `<div class="course-detail" style="color:var(--grey);font-style:italic">Dato og pris oplyses snarest</div>` : ''}
+      </div>
     </div>
   `).join('');
 }
@@ -301,7 +313,7 @@ let deferredInstallPrompt = null;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferredInstallPrompt = e;
-  document.getElementById('install-btn').style.display = 'block';
+  document.getElementById('install-btn').classList.add('visible');
 });
 
 function installApp() {
@@ -309,7 +321,7 @@ function installApp() {
   deferredInstallPrompt.prompt();
   deferredInstallPrompt.userChoice.then(() => {
     deferredInstallPrompt = null;
-    document.getElementById('install-btn').style.display = 'none';
+    document.getElementById('install-btn').classList.remove('visible');
   });
 }
 
@@ -333,8 +345,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Menu
   document.getElementById('menu-btn').addEventListener('click', () => {
-    document.getElementById('nav-menu').classList.toggle('open');
-    document.getElementById('menu-overlay').classList.toggle('open');
+    const isOpen = document.getElementById('nav-menu').classList.toggle('open');
+    document.getElementById('menu-overlay').classList.toggle('open', isOpen);
+    document.getElementById('menu-btn').setAttribute('aria-expanded', isOpen);
   });
   document.getElementById('menu-overlay').addEventListener('click', closeMenu);
 
