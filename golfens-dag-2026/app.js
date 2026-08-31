@@ -90,8 +90,8 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.0';
-const APP_UPDATED = '2026-08-07';
+const APP_VERSION = '2.3';
+const APP_UPDATED = '2026-08-15';
 
 const STORAGE_KEY = 'golfensdag2026_config';
 
@@ -128,6 +128,9 @@ function navigate(page) {
   window.scrollTo(0, 0);
   closeMenu();
   if (page === 'admin') renderAdmin();
+
+  // Micro-animation: vises ved første besøg på begynder-siden i denne session
+  if (page === 'begynder') triggerMicroBall();
 }
 
 function closeMenu() {
@@ -284,6 +287,36 @@ function resetAdmin() {
   if (confirm('Nulstil alle ændringer til standard?')) {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
+  }
+}
+
+
+// --- MICRO-ANIMATION (Begynder-side) ---
+const MICRO_KEY = 'gd2026_micro_shown';
+function triggerMicroBall() {
+  const canvas = document.getElementById('micro-canvas');
+  const content = document.getElementById('micro-content');
+  if (!canvas || !content) return;
+
+  // Reduced-motion eller allerede vist: vis indhold direkte
+  const reducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const alreadySeen = sessionStorage.getItem(MICRO_KEY);
+
+  if (reducedMotion || alreadySeen) {
+    content.classList.add('show');
+    return;
+  }
+
+  sessionStorage.setItem(MICRO_KEY, '1');
+
+  // Kør micro-bold animation
+  if (typeof window.gdMicroBall === 'function') {
+    window.gdMicroBall(canvas, function () {
+      content.classList.add('show');
+    });
+  } else {
+    content.classList.add('show');
   }
 }
 
