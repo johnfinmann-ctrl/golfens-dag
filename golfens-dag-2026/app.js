@@ -1,5 +1,5 @@
 // ============================================================
-// GOLFENS DAG 2026 – app.js
+// GOLFENS DAG 2027 – app.js
 // Rediger denne fil for at opdatere indhold uden at røre HTML.
 // ============================================================
 
@@ -91,9 +91,9 @@ const clubCards = [
 // ============================================================
 
 const APP_VERSION = '2.4';
-const APP_UPDATED = '2026-08-15';
+const APP_UPDATED = '2027-01-01';
 
-const STORAGE_KEY = 'golfensdag2026_config';
+const STORAGE_KEY = 'golfensdag2027_config';
 
 function loadConfig() {
   try {
@@ -292,7 +292,7 @@ function resetAdmin() {
 
 
 // --- MICRO-ANIMATION (Begynder-side) ---
-const MICRO_KEY = 'gd2026_micro_shown';
+const MICRO_KEY = 'gd2027_micro_shown';
 function triggerMicroBall() {
   const canvas = document.getElementById('micro-canvas');
   const content = document.getElementById('micro-content');

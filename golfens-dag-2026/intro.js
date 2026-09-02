@@ -1,5 +1,5 @@
 /* ============================================================
-   GOLFENS DAG 2026 – intro.js v2.0
+   GOLFENS DAG 2027 – intro.js v2.0
    Ny velkomstskærm: golfbane-baggrund + canvas-bolde +
    tre budskaber + "KOM I GANG"-CTA.
    Additiv – rører ikke eksisterende app-kode.
@@ -8,7 +8,7 @@
   'use strict';
 
   // ── Session: vis kun første gang ──────────────────────────
-  const SESSION_KEY = 'gd2026_intro_v2';
+  const SESSION_KEY = 'gd2027_intro_v1';
   if (sessionStorage.getItem(SESSION_KEY)) return;
 
   // ── Reduced-motion ────────────────────────────────────────
@@ -233,7 +233,7 @@
   overlay.id = 'gd-intro';
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-label', 'Velkomst – Golfens Dag 2026');
+  overlay.setAttribute('aria-label', 'Velkomst – Golfens Dag 2027');
 
   overlay.innerHTML = `
     <!-- Baggrundsbillede -->

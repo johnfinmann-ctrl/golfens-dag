@@ -1,4 +1,4 @@
-# Golfens Dag 2026 – Lyngbygaard Golfklub
+# Golfens Dag 2027 – Lyngbygaard Golfklub
 
 ## Filer
 - `index.html` – App struktur (rør ikke uden grund)
