@@ -90,7 +90,7 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.3';
+const APP_VERSION = '2.3.1';
 const APP_UPDATED = '2026-08-15';
 
 const STORAGE_KEY = 'golfensdag2026_config';
