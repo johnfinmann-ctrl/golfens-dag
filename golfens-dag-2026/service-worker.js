@@ -1,4 +1,4 @@
-const CACHE_NAME = 'golfens-dag-2026-v2.3.1';
+const CACHE_NAME = 'golfens-dag-2026-v2.4';
 const ASSETS = [
   './',
   './index.html',
@@ -6,7 +6,8 @@ const ASSETS = [
   './app.js',
   './manifest.json',
   './assets/images/golf-swing.webp',
-  './intro.js'
+  './intro.js',
+  './assets/images/intro-bg.webp'
 ];
 
 self.addEventListener('install', e => {
