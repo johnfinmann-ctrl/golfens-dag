@@ -1,11 +1,11 @@
 /* ============================================================
-   Golfens Dag 2027 – service-worker.js
+   Golfens Dag 2027 – service-worker.js v2.4.2
    Cache: golfens-dag-v2.4.1
-   Skift CACHE_NAME ved enhver ny deploy for at tvinge opdatering.
+   Skift CACHE_NAME ved enhver ny deploy.
    ============================================================ */
 const CACHE_NAME = 'golfens-dag-v2.4.1';
 
-// Alle assets med ?v= buster matcher den faktiske request fra index.html
+// Assets med ?v= querystring matcher de faktiske requests fra index.html
 const ASSETS = [
   './',
   './index.html',
@@ -17,7 +17,7 @@ const ASSETS = [
   './assets/images/intro-bg.webp',
 ];
 
-// Install: cache alle assets
+// Install: cache alle assets, skipWaiting så ny SW overtager hurtigt
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME)
@@ -26,35 +26,36 @@ self.addEventListener('install', e => {
   );
 });
 
-// Activate: slet ALLE gamle caches (tvinger GitHub Pages-besøgende til ny version)
+// Activate: slet alle gamle golfens-dag-* caches, overtag klienter
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys()
+      .then(keys => Promise.all(
         keys
-          .filter(k => k !== CACHE_NAME)
+          .filter(k => k.startsWith('golfens-dag-') && k !== CACHE_NAME)
           .map(k => {
             console.log('[SW] Deleting old cache:', k);
             return caches.delete(k);
           })
-      )
-    ).then(() => self.clients.claim())
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch: cache-first, network-fallback
-// Vigtigt: navigation requests returnerer index.html (til GitHub Pages subpath)
+// Fetch: navigation = network-first (altid ny HTML), assets = cache-first
 self.addEventListener('fetch', e => {
-  const url = new URL(e.request.url);
+  // Kun samme-oprindelse og http(s) requests
+  if (!e.request.url.startsWith('http')) return;
 
-  // Navigation (HTML-sider): network-first så ny version altid hentes
   if (e.request.mode === 'navigate') {
+    // Navigation: network-first med cache-fallback
     e.respondWith(
       fetch(e.request)
         .then(r => {
-          // Opdater cache med ny version
-          const clone = r.clone();
-          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+          if (r && r.status === 200) {
+            const clone = r.clone();
+            caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+          }
           return r;
         })
         .catch(() => caches.match('./index.html'))
@@ -62,16 +63,17 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Assets: cache-first
+  // Assets: cache-first, network-fallback
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
       return fetch(e.request).then(r => {
-        if (!r || r.status !== 200 || r.type === 'opaque') return r;
-        const clone = r.clone();
-        caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        if (r && r.status === 200 && r.type !== 'opaque') {
+          const clone = r.clone();
+          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        }
         return r;
-      });
-    }).catch(() => caches.match('./index.html'))
+      }).catch(() => caches.match('./index.html'));
+    })
   );
 });

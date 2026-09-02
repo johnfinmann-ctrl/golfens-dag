@@ -34,7 +34,7 @@ const clubConfig = {
 const beginnerCourses = [
   {
     name: "Hold 7A",
-    start: "17. marts 2026",         // Startdato
+    start: "17. marts 2027",         // Startdato
     dates: ["17/3","24/3","31/3"],   // Alle datoer
     price: "2.500 kr.",
     seats: "16 pladser",
