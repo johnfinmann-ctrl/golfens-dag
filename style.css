@@ -303,13 +303,13 @@ button { font-family: inherit; }
 .home-nav {
   position: relative;
   z-index: 1;
-  flex: 1;                       /* tager den ledige plads i home-photo-section,
-                                     så griddet centreres over footeren */
+  flex: 1;                       /* tager den ledige plads i home-photo-section */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-content: center;
+  align-content: end;            /* skub griddet ned mod bunden af billedet,
+                                     så det ikke dækker headline-teksten øverst */
   gap: .65rem;
-  padding: 1.6rem 1rem 1rem;
+  padding: 0 1rem 1.5rem;
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
@@ -413,7 +413,7 @@ button { font-family: inherit; }
   background-position: 55% center;
 
   /* Billedet er nu selve bærer af menukortene, ikke kun en bundstribe */
-  min-height: 560px;
+  min-height: 640px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -454,7 +454,7 @@ button { font-family: inherit; }
 /* Tablet */
 @media (min-width: 600px) {
   .home-photo-section {
-    min-height: 620px;
+    min-height: 700px;
     background-position: 50% 32%;
   }
 }
@@ -462,7 +462,7 @@ button { font-family: inherit; }
 /* iPad landscape / desktop */
 @media (min-width: 900px) {
   .home-photo-section {
-    min-height: 640px;
+    min-height: 720px;
     background-position: 50% 26%;
   }
 }
@@ -470,7 +470,7 @@ button { font-family: inherit; }
 /* Bred desktop */
 @media (min-width: 1280px) {
   .home-photo-section {
-    min-height: 680px;
+    min-height: 760px;
     background-position: 50% 24%;
   }
 }
@@ -807,7 +807,7 @@ button { font-family: inherit; }
     grid-template-columns: repeat(3, 1fr);
     max-width: 760px;
     gap: 1rem;
-    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
   .home-btn { min-height: 116px; padding: 1.3rem 1rem 1.15rem; }
   .home-btn-icon-wrap { width: 46px; height: 46px; }
@@ -821,6 +821,7 @@ button { font-family: inherit; }
   .home-nav {
     max-width: 1080px;
     gap: 1.5rem;
+    padding-bottom: 2.5rem;
   }
   .home-btn { min-height: 128px; }
 }
