@@ -1,0 +1,14 @@
+Golfens Dag 2027 – v2.6.1 – upload-pakke (kun nødvendige filer)
+
+Upload filerne til roden af repoet golfens-dag og bevar mappestrukturen:
+  index.html
+  style.css
+  app.js
+  intro.js            (ny fil)
+  service-worker.js
+  manifest.json
+  assets/images/golf-swing.webp
+
+Valgfrit oprydning: filen golf-swing.webp i rodmappen (ikke i assets/) bruges ikke og kan slettes.
+Undermappen golfens-dag-2026/ er urørt og må ikke slettes.
+Cache-versionering er håndteret automatisk (v2.6.1) – intet manuelt skridt for besøgende.
