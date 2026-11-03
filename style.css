@@ -1,5 +1,5 @@
 /* ============================================================
-   GOLFENS DAG 2027 – style.css v2.7.3
+   GOLFENS DAG 2027 – style.css v2.7.7
    Lyngbygaard Golfklub · Visuel optimering
    ============================================================ */
 
@@ -406,7 +406,7 @@ button { font-family: inherit; }
    ============================================================ */
 .home-photo-section {
   /* Primary: golf-swing (varmt solnedgangslys, sving) */
-  background-image: url('assets/images/golf-swing.webp?v=2.7.3');
+  background-image: url('assets/images/golf-swing.webp?v=2.7.7');
   background-size: cover;
   background-repeat: no-repeat;
   /* Mobil: spiller er centreret i billedet, lidt til højre */
@@ -1028,7 +1028,7 @@ button { font-family: inherit; }
 }
 
 /* ============================================================
-   v2.7.3 – INFORMATIONSBJÆLKE + POPUP
+   v2.7.7 – INFORMATIONSBJÆLKE + POPUP
    ============================================================ */
 :root { --ticker-h: 38px; --ticker-total: calc(var(--ticker-h) + var(--safe-bottom)); }
 body { padding-bottom: var(--ticker-total); }
@@ -1094,7 +1094,7 @@ html.gd-intro-active .ticker { display: none; }
 @media (min-width: 600px) { .gd-modal-card { padding: 2rem 2rem 1.7rem; } .gd-modal-actions { flex-direction: row; } .gd-modal-btn { flex: 1; } }
 
 /* ============================================================
-   v2.7.3 – FOTOBASERET FORSIDE (erstatter den tidligere hjem-layout;
+   v2.7.7 – FOTOBASERET FORSIDE (erstatter den tidligere hjem-layout;
    gamle .hero/.home-* regler ligger urørt og ubrugt)
    ============================================================ */
 .gh {
@@ -1104,7 +1104,7 @@ html.gd-intro-active .ticker { display: none; }
   padding: 1.6rem 0 1.6rem; overflow: hidden; color: var(--cream);
   background:
     linear-gradient(to bottom, rgba(5,25,16,.62) 0%, rgba(5,25,16,.3) 32%, rgba(5,25,16,.25) 62%, rgba(5,25,16,.78) 100%),
-    url('assets/images/forside-golfbane-mobil.webp?v=2.7.3') 50% 30% / cover no-repeat #0B3D2B;
+    url('assets/images/forside-golfbane-mobil.webp?v=2.7.7') 50% 30% / cover no-repeat #0B3D2B;
 }
 .gh-copy { text-align: center; padding: 0 1rem; margin-bottom: 1.6rem; }
 .gh-eyebrow { display: flex; align-items: center; justify-content: center; gap: .8rem; margin: 0 0 .7rem; }
@@ -1141,12 +1141,12 @@ html.gd-intro-active .ticker { display: none; }
 .gh-card:active { transform: scale(.98); }
 
 /* Foto pr. kort (object-fit: cover-ækvivalent via background-size: cover). */
-.gh-card[data-card="om"]  { --img: url('assets/images/forside-bold.webp?v=2.7.3'); }
-.gh-card[data-card="program"]  { --img: url('assets/images/program-kalender.webp?v=2.7.3'); }
-.gh-card[data-card="traener"]  { --img: url('assets/images/traenerteam-golfbag.webp?v=2.7.3'); }
-.gh-card[data-card="begreber"] { --img: url('assets/images/golfbegreber-flag.webp?v=2.7.3'); }
-.gh-card[data-card="begynder"] { --img: url('assets/images/begynderforloeb-bolde.webp?v=2.7.3'); }
-.gh-card[data-card="kontakt"]  { --img: url('assets/images/kontakt-klubhus.webp?v=2.7.3'); }
+.gh-card[data-card="om"]  { --img: url('assets/images/forside-bold.webp?v=2.7.7'); }
+.gh-card[data-card="program"]  { --img: url('assets/images/program-kalender.webp?v=2.7.7'); }
+.gh-card[data-card="traener"]  { --img: url('assets/images/traenerteam-golfbag.webp?v=2.7.7'); }
+.gh-card[data-card="begreber"] { --img: url('assets/images/golfbegreber-flag.webp?v=2.7.7'); }
+.gh-card[data-card="begynder"] { --img: url('assets/images/begynderforloeb-bolde.webp?v=2.7.7'); }
+.gh-card[data-card="kontakt"]  { --img: url('assets/images/kontakt-klubhus.webp?v=2.7.7'); }
 .gh-card[data-card="om"]  .gh-card-photo { background-position: 44% 55%; }
 .gh-card[data-card="program"]  .gh-card-photo { background-position: 55% 50%; }
 .gh-card[data-card="traener"]  .gh-card-photo { background-position: 72% 45%; }
@@ -1176,7 +1176,7 @@ html.gd-intro-active .ticker { display: none; }
 @media (min-width: 700px) {
   .gh { padding-top: 2.6rem; background:
     linear-gradient(to bottom, rgba(5,25,16,.62) 0%, rgba(5,25,16,.3) 32%, rgba(5,25,16,.25) 62%, rgba(5,25,16,.78) 100%),
-    url('assets/images/forside-golfbane.webp?v=2.7.3') center 40% / cover no-repeat #0B3D2B; }
+    url('assets/images/forside-golfbane.webp?v=2.7.7') center 40% / cover no-repeat #0B3D2B; }
   .gh { justify-content: center; padding-top: 1.6rem; padding-bottom: 1.6rem; }
   .gh-copy { margin-bottom: 1.5rem; }
   .gh-grid { margin-top: 0; }
@@ -1188,14 +1188,14 @@ html.gd-intro-active .ticker { display: none; }
 @media (min-width: 1100px) { .gh-card-label { font-size: 1.3rem; } }
 @media (prefers-reduced-motion: reduce) { .gh-card, .gh-card-photo { transition: none; } }
 
-/* v2.7.3: popup – tekstknap "Luk" og første underoverskrift */
+/* v2.7.7: popup – tekstknap "Luk" og første underoverskrift */
 .gd-modal-sub-first { margin-top: .9rem; }
 .gd-modal-title { margin-right: 2.6rem; }
 .gd-modal-btn-text { background: transparent; border: none; color: rgba(244,239,230,.85); min-height: 44px; cursor: pointer; font-family: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .gd-modal-btn-text:hover { color: #fff; }
 @media (min-width: 600px) { .gd-modal-actions { flex-wrap: wrap; } .gd-modal-btn-text { flex-basis: 100%; } }
 
-/* v2.7.3 – kompakt popup */
+/* v2.7.7 – kompakt popup */
 .gd-modal-card { padding: 1.2rem 1.15rem 1rem; }
 .gd-modal-title { font-size: 1.22rem; line-height: 1.2; margin-bottom: .1rem; }
 .gd-modal-sub { font-size: .98rem; margin: .7rem 0 .25rem; }
@@ -1207,7 +1207,7 @@ html.gd-intro-active .ticker { display: none; }
 .gd-modal-close { top: .4rem; right: .4rem; width: 40px; height: 40px; }
 @media (min-width: 600px) { .gd-modal-card { padding: 1.6rem 1.7rem 1.3rem; } .gd-modal-btn { min-height: 48px; } }
 
-/* v2.7.3 – informationsbjælke: større tekst */
+/* v2.7.7 – informationsbjælke: større tekst */
 .ticker-item { font-size: .88rem; }
 @media (min-width: 900px) {
   :root { --ticker-h: 52px; }
@@ -1215,3 +1215,25 @@ html.gd-intro-active .ticker { display: none; }
   .ticker-sep { font-size: .7rem; }
   .ticker-set { gap: 3rem; }
 }
+
+/* v2.7.7 – Om Lyngbygaard Golf: seks fotokort (samme stil som forsiden) */
+.om-grid .gh-card { min-height: 0; }
+.gh-card[data-card="om-18"]         { --img: url('assets/images/om-18-bane.webp?v=2.7.7'); }
+.gh-card[data-card="om-9"]          { --img: url('assets/images/om-9-bane.webp?v=2.7.7'); }
+.gh-card[data-card="om-restaurant"] { --img: url('assets/images/om-restaurant.webp?v=2.7.7'); }
+.gh-card[data-card="om-traener"]    { --img: url('assets/images/om-traenerteam-bolde.webp?v=2.7.7'); }
+.gh-card[data-card="om-18"]         .gh-card-photo { background-position: 50% 50%; }
+.gh-card[data-card="om-9"]          .gh-card-photo { background-position: 50% 50%; }
+.gh-card[data-card="om-restaurant"] .gh-card-photo { background-position: 50% 50%; }
+.gh-card[data-card="om-traener"]    .gh-card-photo { background-position: 50% 50%; }
+.gh-card[data-card="om-begynder"] { --img: url('assets/images/om-begynderhold-bold.webp?v=2.7.7'); }
+.gh-card[data-card="om-web"]      { --img: url('assets/images/om-hjemmeside-bane.webp?v=2.7.7'); }
+.gh-card[data-card="om-begynder"] .gh-card-photo { background-position: 50% 50%; }
+.gh-card[data-card="om-web"]      .gh-card-photo { background-position: 50% 50%; }
+
+/* v2.7.7 – Om-kort efter det godkendte design: pil øverst til højre, centreret titel, lys kant */
+.om-photo { border: 3px solid rgba(255,255,255,.95); border-radius: 20px; box-shadow: 0 6px 18px rgba(11,61,43,.22); aspect-ratio: 1.4; }
+.om-photo .gh-card-label { left: .5rem; right: .5rem; bottom: .8rem; text-align: center; font-size: clamp(1rem, 4.4vw, 1.25rem); }
+.om-photo .om-ne { position: absolute; top: .6rem; right: .7rem; color: #fff; filter: drop-shadow(0 1px 3px rgba(0,0,0,.6)); }
+.om-photo:focus-visible { outline: 3px solid var(--c-gold); outline-offset: 3px; }
+@media (min-width: 700px) { .om-photo .gh-card-label { font-size: 1.2rem; bottom: 1rem; } }

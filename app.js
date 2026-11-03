@@ -78,19 +78,19 @@ const golfTerms = [
 
 // --- OM KLUBBEN KORT ---
 const clubCards = [
-  { icon: "⛳", title: "18 huller", url: "https://lyg.dk/baner-faciliteter/" },
-  { icon: "🏌️", title: "9 huller", url: "https://lyg.dk/baner-faciliteter/" },
-  { icon: "🍽️", title: "Restaurant", url: "https://lyg.dk/brasseriet/" },
-  { icon: "👨‍🏫", title: "Trænerteam", url: "https://lyg.dk/traenerteamet/" },
-  { icon: "🎓", title: "Begynderhold", url: "https://lyg.dk/begyndergolf/" },
-  { icon: "🌐", title: "Hjemmeside", url: "https://lyg.dk/" }
-];
+  { key: "18", icon: "⛳", title: "18 huller", url: "https://lyg.dk/baner-faciliteter/" },
+  { key: "9", icon: "🏌️", title: "9 huller", url: "https://lyg.dk/baner-faciliteter/" },
+  { key: "restaurant", icon: "🍽️", title: "Restaurant", url: "https://lyg.dk/brasseriet/" },
+  { key: "traener", icon: "👨‍🏫", title: "Trænerteam", url: "https://lyg.dk/traenerteamet/" },
+  { key: "begynder", icon: "🎓", title: "Begynderhold", url: "https://lyg.dk/begyndergolf/" },
+  { key: "web", icon: "🌐", title: "Hjemmeside", url: "https://lyg.dk/" }
+]; // icon-feltet bruges ikke længere (v2.7.7 viser fotokort) – bevaret til evt. senere brug
 
 // ============================================================
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.7.3';
+const APP_VERSION = '2.7.7';
 const APP_UPDATED = '2026-11-03';
 
 const STORAGE_KEY = 'golfensdag2027_config';
@@ -254,11 +254,12 @@ function copyEmail() {
 
 function renderOm() {
   const grid = document.getElementById('om-grid');
+  const chev = '<svg class="om-ne" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg>';
   grid.innerHTML = clubCards.map(c => `
-    <a href="${c.url}" target="_blank" rel="noopener" class="om-card">
-      <span class="om-icon">${c.icon}</span>
-      <span class="om-label">${c.title}</span>
-      <span class="om-arrow">↗</span>
+    <a href="${c.url}" target="_blank" rel="noopener" class="gh-card om-photo" role="listitem" data-card="om-${c.key}" aria-label="${c.title} (åbner eksternt)">
+      <span class="gh-card-photo" aria-hidden="true"></span>
+      <span class="gh-card-label">${c.title}</span>
+      ${chev}
     </a>
   `).join('');
 }
@@ -402,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// --- v2.7.3: INFORMATIONSBJÆLKE (interne links) + POPUP ---
+// --- v2.7.7: INFORMATIONSBJÆLKE (interne links) + POPUP ---
 const POPUP_KEY = 'gd2027_popup_v1';
 (function () {
   function go(e) {
