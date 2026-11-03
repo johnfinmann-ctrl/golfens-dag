@@ -1,25 +1,28 @@
 /* ============================================================
-   Golfens Dag 2027 – service-worker.js v2.7.0
-   Cache: golfens-dag-v2.7.0
+   Golfens Dag 2027 – service-worker.js v2.7.3
+   Cache: golfens-dag-v2.7.3
    Overført og tilpasset fra golfens-dag-2026/ (v2.4.2) til rodens
    faktiske filsæt. Skift CACHE_NAME ved enhver ny deploy, så
    gamle billeder/layout ikke hænger fast i brugernes cache.
    ============================================================ */
-const CACHE_NAME = 'golfens-dag-v2.7.0';
+const CACHE_NAME = 'golfens-dag-v2.7.3';
 
 // Assets med ?v= querystring matcher de faktiske requests fra index.html
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=2.7.0',
-  './app.js?v=2.7.0',
-  './intro.js?v=2.7.0',
+  './style.css?v=2.7.3',
+  './app.js?v=2.7.3',
+  './intro.js?v=2.7.3',
   './manifest.json',
-  './assets/images/golf-swing.webp?v=2.7.0',
-  // './assets/images/intro-bg.webp', — tilføjes når et rent, tekstfrit
-  //   introbillede foreligger (se leveringsrapport). Indtil da MÅ denne
-  //   linje ikke stå her: caches.addAll() fejler hele installationen,
-  //   hvis blot ét asset i listen ikke findes (404).
+  './assets/images/forside-golfbane.webp?v=2.7.3',
+  './assets/images/forside-golfbane-mobil.webp?v=2.7.3',
+  './assets/images/forside-bold.webp?v=2.7.3',
+  './assets/images/program-kalender.webp?v=2.7.3',
+  './assets/images/traenerteam-golfbag.webp?v=2.7.3',
+  './assets/images/golfbegreber-flag.webp?v=2.7.3',
+  './assets/images/begynderforloeb-bolde.webp?v=2.7.3',
+  './assets/images/kontakt-klubhus.webp?v=2.7.3',
 ];
 
 // Install: cache alle assets, skipWaiting så ny SW overtager hurtigt

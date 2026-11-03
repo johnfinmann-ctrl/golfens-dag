@@ -90,7 +90,7 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.7.0';
+const APP_VERSION = '2.7.3';
 const APP_UPDATED = '2026-11-03';
 
 const STORAGE_KEY = 'golfensdag2027_config';
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// --- v2.7.0: INFORMATIONSBJÆLKE (interne links) + POPUP ---
+// --- v2.7.3: INFORMATIONSBJÆLKE (interne links) + POPUP ---
 const POPUP_KEY = 'gd2027_popup_v1';
 (function () {
   function go(e) {
@@ -432,7 +432,6 @@ const POPUP_KEY = 'gd2027_popup_v1';
     const el = popupEl(); if (!el) return;
     el.addEventListener('click', e => {
       if (e.target.closest('[data-close]')) { closePopup(); return; }
-      if (e.target.closest('#gd-pop-signup')) { closePopup(true); return; }
       go(e);
     });
     document.addEventListener('keydown', e => {

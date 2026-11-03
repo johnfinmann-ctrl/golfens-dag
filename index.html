@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Golfens Dag">
   <title>Golfens Dag 2027 – Lyngbygaard Golfklub</title>
-  <link rel="stylesheet" href="style.css?v=2.7.0">
+  <link rel="stylesheet" href="style.css?v=2.7.3">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="icon" type="image/png" href="icon-192.png">
@@ -230,106 +230,55 @@
          ======================================== -->
     <section class="page active" id="page-home" aria-label="Forside">
 
-      <!-- HERO – kompakt mørkegrøn + cirkelmønster -->
-      <div class="hero" id="hero-section">
-        <div class="hero-pattern" aria-hidden="true">
-          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="circles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                <use href="#pattern-circles" width="100" height="100"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#circles)"/>
-          </svg>
-        </div>
-        <div class="hero-content">
-          <div class="hero-emblem" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-              <circle cx="9" cy="17" r="3"/>
-              <line x1="16" y1="2" x2="16" y2="19"/>
-              <path d="M16 2l5 3-5 3"/>
-            </svg>
-          </div>
-          <p class="hero-eyebrow">Lyngbygaard Golfklub</p>
-          <h1 class="hero-title">Golfens Dag <span class="hero-year">2027</span></h1>
-          <p class="hero-subtitle">Prøv golf, mød klubben og kom godt i gang.</p>
-        </div>
-      </div>
-
-      <!-- GOLF FOTO SEKTION – de 6 menukort ligger nu oven på billedet -->
-      <div class="home-photo-section" role="img" aria-label="Golfspiller på Lyngbygaard banen">
-        <div class="home-photo-overlay"></div>
-
-        <!-- 6 MENUKORT – oven på golfbilledet -->
-        <div class="home-nav" role="list" aria-label="Menuen">
-
-          <button class="home-btn" role="listitem" onclick="navigate('program')" aria-label="Program">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-program"/></svg>
-            </span>
-            <span class="home-btn-label">Program</span>
-          </button>
-
-          <a class="home-btn" role="listitem"
-             href="https://lyg.dk/traenerteamet/" target="_blank" rel="noopener"
-             aria-label="Mød trænerteamet (åbner eksternt)">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-traener"/></svg>
-            </span>
-            <span class="home-btn-label">Mød trænerteamet</span>
-          </a>
-
-          <button class="home-btn" role="listitem" onclick="navigate('begreber')" aria-label="Golfbegreber">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-begreber"/></svg>
-            </span>
-            <span class="home-btn-label">Golfbegreber</span>
-          </button>
-
-          <button class="home-btn" role="listitem" onclick="navigate('begynder')" aria-label="Begynderforløb">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-begynder"/></svg>
-            </span>
-            <span class="home-btn-label">Begynderforløb</span>
-          </button>
-
-          <button class="home-btn" role="listitem" onclick="navigate('kontakt')" aria-label="Kontakt">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-kontakt"/></svg>
-            </span>
-            <span class="home-btn-label">Kontakt</span>
-          </button>
-
-          <button class="home-btn" role="listitem" onclick="navigate('om')" aria-label="Om Lyngbygaard Golf">
-            <span class="home-btn-icon-wrap" aria-hidden="true">
-              <svg class="home-btn-svg"><use href="#icon-om"/></svg>
-            </span>
-            <span class="home-btn-label">Om klubben</span>
-          </button>
-
-        </div><!-- /home-nav -->
-
-        <!-- KOM I GANG – rigtig knap (erstatter den tidligere billedindbyggede) -->
-        <div class="home-cta-wrap">
-          <a class="home-cta" href="https://lyg.dk/begyndergolf/#kontakt-form"
-             target="_blank" rel="noopener"
-             aria-label="Kom i gang – tilmelding åbner i en ny fane">
-            <span>KOM I GANG</span>
-            <svg class="home-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
-                 aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+      <!-- FORSIDE v2.7.3 – golfbane som baggrund, seks fotokort med gyldne rammer.
+           Al tekst er rigtig HTML. Kortfoto sættes i style.css (--img pr. kort). -->
+      <div class="gh" id="gh-hero">
+        <div class="gh-copy">
+          <p class="gh-eyebrow"><span>Golfens Dag 2027</span></p>
+          <h1 class="gh-title">Lyngbygaard Golfklub</h1>
+          <p class="gh-tagline">Oplev golfen · Mød trænerne · Kom godt i gang</p>
         </div>
 
-        <div class="home-photo-footer">
-          <a class="home-photo-link" href="https://lyg.dk" target="_blank" rel="noopener">
-            lyg.dk
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor"
-                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M2 10L10 2M4 2h6v6"/>
-            </svg>
+        <div class="gh-grid" role="list" aria-label="Menuen">
+          <button class="gh-card" data-card="om" role="listitem" type="button" onclick="navigate('om')" aria-label="Om klubben">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Om klubben</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
+          </button>
+          <button class="gh-card" data-card="program" role="listitem" type="button" onclick="navigate('program')" aria-label="Program">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Program</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
+          </button>
+          <a class="gh-card" data-card="traener" role="listitem" href="https://lyg.dk/traenerteamet/" target="_blank" rel="noopener" aria-label="Mød trænerteamet (åbner eksternt)">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Mød trænerteamet</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
           </a>
+          <button class="gh-card" data-card="begreber" role="listitem" type="button" onclick="navigate('begreber')" aria-label="Golfbegreber">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Golfbegreber</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
+          </button>
+          <button class="gh-card" data-card="begynder" role="listitem" type="button" onclick="navigate('begynder')" aria-label="Begynderforløb">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Begynderforløb</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
+          </button>
+          <button class="gh-card" data-card="kontakt" role="listitem" type="button" onclick="navigate('kontakt')" aria-label="Kontakt">
+            <span class="gh-card-photo" aria-hidden="true"></span>
+            <span class="gh-card-label">Kontakt</span>
+            <svg class="gh-chev" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3l7 7-7 7"/></svg>
+          </button>
+        </div>
+
+        <div class="gh-cta-wrap">
+          <button class="gh-cta" type="button" onclick="navigate('begynder')">
+            <span>Kom godt videre med golf</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <a class="gh-site" href="https://lyg.dk" target="_blank" rel="noopener">lyg.dk ↗</a>
         </div>
       </div>
 
@@ -366,7 +315,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
@@ -395,7 +344,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
@@ -445,7 +394,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
@@ -504,7 +453,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
@@ -533,7 +482,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
@@ -579,54 +528,47 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.3</span></div>
         </div>
       </footer>
     </section>
 
   </main>
 
-  <!-- ===== INFORMATIONSBJÆLKE (v2.7.0) ===== -->
+  <!-- ===== INFORMATIONSBJÆLKE (v2.7.3) ===== -->
   <nav class="ticker" id="gd-ticker" aria-label="Information fra klubben">
     <div class="ticker-track">
       <div class="ticker-set">
-        <a class="ticker-item" href="#begynder" data-go="begynder"><span class="ticker-ico" aria-hidden="true">🏌️</span> Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
+        <a class="ticker-item" href="#begynder" data-go="begynder">Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
         <span class="ticker-sep" aria-hidden="true">◆</span>
-        <a class="ticker-item" href="#kontakt" data-go="kontakt"><span class="ticker-ico" aria-hidden="true">⛳</span> Har du allerede golfkortet? Kontakt kontoret og hør om dine muligheder.</a>
-        <span class="ticker-sep" aria-hidden="true">◆</span>
-        <a class="ticker-item" href="https://johnfinmann-ctrl.github.io/LYG-Begynder/" target="_blank" rel="noopener"><span class="ticker-ico" aria-hidden="true">💚</span> GolfStart Lyngbygaard – din vej ind i golfens fællesskab.</a>
-        <span class="ticker-sep" aria-hidden="true">◆</span>
-        <a class="ticker-item" href="#kontakt" data-go="kontakt"><span class="ticker-ico" aria-hidden="true">📞</span> Spørgsmål? Kontakt Lyngbygaard Golfklubs kontor.</a>
+        <a class="ticker-item" href="#kontakt" data-go="kontakt">Har du allerede golfkortet? Kontakt kontoret.</a>
         <span class="ticker-sep" aria-hidden="true">◆</span>
       </div>
       <div class="ticker-set" aria-hidden="true">
-        <a class="ticker-item" tabindex="-1" href="#begynder" data-go="begynder"><span class="ticker-ico">🏌️</span> Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
-        <span class="ticker-sep">◆</span>
-        <a class="ticker-item" tabindex="-1" href="#kontakt" data-go="kontakt"><span class="ticker-ico">⛳</span> Har du allerede golfkortet? Kontakt kontoret og hør om dine muligheder.</a>
-        <span class="ticker-sep">◆</span>
-        <a class="ticker-item" tabindex="-1" href="https://johnfinmann-ctrl.github.io/LYG-Begynder/" target="_blank" rel="noopener"><span class="ticker-ico">💚</span> GolfStart Lyngbygaard – din vej ind i golfens fællesskab.</a>
-        <span class="ticker-sep">◆</span>
-        <a class="ticker-item" tabindex="-1" href="#kontakt" data-go="kontakt"><span class="ticker-ico">📞</span> Spørgsmål? Kontakt Lyngbygaard Golfklubs kontor.</a>
-        <span class="ticker-sep">◆</span>
+        <a class="ticker-item" tabindex="-1" href="#begynder" data-go="begynder">Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
+        <a class="ticker-item" tabindex="-1" href="#kontakt" data-go="kontakt">Har du allerede golfkortet? Kontakt kontoret.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
       </div>
     </div>
   </nav>
 
-  <!-- ===== POPUP: BEGYNDERFORLØB OG GOLFKORT (v2.7.0) ===== -->
+  <!-- ===== POPUP: BEGYNDERFORLØB OG GOLFKORT (v2.7.3) ===== -->
   <div class="gd-modal" id="gd-popup" hidden>
     <div class="gd-modal-backdrop" data-close></div>
     <div class="gd-modal-card" role="dialog" aria-modal="true" aria-labelledby="gd-pop-title" tabindex="-1">
       <button class="gd-modal-close" type="button" data-close aria-label="Luk">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15"/></svg>
       </button>
-      <p class="gd-modal-eyebrow">Velkommen til Lyngbygaard Golfklub</p>
-      <h2 class="gd-modal-title" id="gd-pop-title">Vil du gerne begynde at spille golf?</h2>
-      <p class="gd-modal-text">Husk at tilmelde dig vores begynderforløb, hvor du bliver introduceret til golfen og fællesskabet i klubben.</p>
+      <h2 class="gd-modal-title" id="gd-pop-title">Velkommen til Golfens Dag 2027!</h2>
+      <h3 class="gd-modal-sub gd-modal-sub-first">Er du ny til golf?</h3>
+      <p class="gd-modal-text">Husk at tilmelde dig vores begynderforløb, så du kan komme godt i gang.</p>
       <h3 class="gd-modal-sub">Har du allerede golfkortet?</h3>
-      <p class="gd-modal-text">Så kontakt klubbens kontor og hør mere om dine muligheder for at spille golf i Lyngbygaard.</p>
+      <p class="gd-modal-text">Så kontakt klubbens kontor, som kan hjælpe dig videre.</p>
       <div class="gd-modal-actions">
-        <a class="gd-modal-btn gd-modal-btn-primary" id="gd-pop-signup" href="https://lyg.dk/begyndergolf/#kontakt-form" target="_blank" rel="noopener">TILMELD BEGYNDERFORLØB →</a>
-        <a class="gd-modal-btn gd-modal-btn-ghost" id="gd-pop-office" href="#kontakt" data-go="kontakt">KONTAKT KONTORET →</a>
+        <a class="gd-modal-btn gd-modal-btn-primary" id="gd-pop-signup" href="#begynder" data-go="begynder">Se begynderforløb</a>
+        <a class="gd-modal-btn gd-modal-btn-ghost" id="gd-pop-office" href="#kontakt" data-go="kontakt">Kontakt kontoret</a>
+        <button class="gd-modal-btn gd-modal-btn-text" id="gd-pop-close" type="button" data-close>Luk</button>
       </div>
     </div>
   </div>
@@ -643,7 +585,7 @@
     <svg class="admin-gear-svg"><use href="#icon-gear"/></svg>
   </button>
 
-  <script src="app.js?v=2.7.0"></script>
-  <script src="intro.js?v=2.7.0"></script>
+  <script src="app.js?v=2.7.3"></script>
+  <script src="intro.js?v=2.7.3"></script>
 </body>
 </html>
