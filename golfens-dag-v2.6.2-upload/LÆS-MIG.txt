@@ -1,0 +1,21 @@
+Golfens Dag 2027 – v2.6.2 – upload-pakke (kun nødvendige filer)
+
+SÅDAN UPLOADER DU (GitHub, repo: golfens-dag):
+ 1. Åbn repoet -> "Add file" -> "Upload files".
+ 2. Træk INDHOLDET af denne mappe ind (index.html, style.css, app.js, intro.js,
+    service-worker.js, manifest.json og mappen assets/images/golf-swing.webp).
+    Filen assets/images/golf-swing.webp SKAL med – det er det rensede billede.
+ 3. Commit til main og vent 1-2 minutter på GitHub Pages.
+
+TJEK AT DET ER LIVE:
+ - https://johnfinmann-ctrl.github.io/golfens-dag/assets/images/golf-swing.webp?v=2.6.2
+   skal vise golfbilledet UDEN hvide kort og uden KOM I GANG-knap.
+ - Nederst i appen skal der stå v2.6.2.
+
+PÅ IPHONE (gammel version ligger i cachen):
+ Åbn siden, luk fanen/appen helt, åbn igen. Anden åbning viser den nye version
+ (den nye service worker sletter selv den gamle cache). Hjemmeskærm-app: luk fra
+ app-skifteren og åbn to gange.
+
+Valgfrit: golf-swing.webp i rodmappen (ikke assets/) er ubrugt og kan slettes.
+Undermappen golfens-dag-2026/ er urørt.
