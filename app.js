@@ -1,5 +1,5 @@
 // ============================================================
-// GOLFENS DAG 2026 – app.js
+// GOLFENS DAG 2027 – app.js
 // Rediger denne fil for at opdatere indhold uden at røre HTML.
 // ============================================================
 
@@ -90,13 +90,22 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.2';
-const APP_UPDATED = '2026-08-15';
+const APP_VERSION = '2.7.0';
+const APP_UPDATED = '2026-11-03';
 
-const STORAGE_KEY = 'golfensdag2026_config';
+const STORAGE_KEY = 'golfensdag2027_config';
+const LEGACY_STORAGE_KEY = 'golfensdag2026_config'; // for migrering, se nedenfor
 
 function loadConfig() {
   try {
+    // Migrering: hvis en besøgende/admin tidligere har gemt ændringer under
+    // det gamle 2026-nøglenavn, flyttes de automatisk til det nye 2027-navn,
+    // så ingen eksisterende brugerdata går tabt ved denne oprydning.
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+      if (legacy) localStorage.setItem(STORAGE_KEY, legacy);
+    }
+
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       const data = JSON.parse(saved);
@@ -113,7 +122,7 @@ function saveConfig(data) {
 }
 
 // --- ROUTER ---
-const pages = ['home', 'program', 'traener', 'begreber', 'begynder', 'kontakt', 'om', 'admin'];
+const pages = ['home', 'program', 'begreber', 'begynder', 'kontakt', 'om', 'admin'];
 
 function navigate(page) {
   pages.forEach(p => {
@@ -128,6 +137,38 @@ function navigate(page) {
   window.scrollTo(0, 0);
   closeMenu();
   if (page === 'admin') renderAdmin();
+
+  // Micro-animation: vises ved første besøg på begynder-siden i denne session
+  if (page === 'begynder') triggerMicroBall();
+}
+
+// --- MICRO-ANIMATION (Begynder-side) ---
+const MICRO_KEY = 'gd2027_micro_shown';
+function triggerMicroBall() {
+  const canvas = document.getElementById('micro-canvas');
+  const content = document.getElementById('micro-content');
+  if (!canvas || !content) return;
+
+  // Reduced-motion eller allerede vist: vis indhold direkte
+  const reducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const alreadySeen = sessionStorage.getItem(MICRO_KEY);
+
+  if (reducedMotion || alreadySeen) {
+    content.classList.add('show');
+    return;
+  }
+
+  sessionStorage.setItem(MICRO_KEY, '1');
+
+  // Kør micro-bold animation (defineret i intro.js)
+  if (typeof window.gdMicroBall === 'function') {
+    window.gdMicroBall(canvas, function () {
+      content.classList.add('show');
+    });
+  } else {
+    content.classList.add('show');
+  }
 }
 
 function closeMenu() {
@@ -247,7 +288,7 @@ function renderAdmin() {
         </div>
       `).join('')}
     </div>
-    <button class="btn-primary" onclick="saveAdmin()">💾 Gem ændringer</button>
+    <button class="btn-primary" onclick="saveAdmin()">💾 Gem lokalt (kun denne enhed)</button>
     <button class="btn-secondary" style="margin-top:0.5rem" onclick="resetAdmin()">↺ Nulstil til standard</button>
   `;
   document.getElementById('admin-content').innerHTML = html;
@@ -281,7 +322,7 @@ function saveAdmin() {
 }
 
 function resetAdmin() {
-  if (confirm('Nulstil alle ændringer til standard?')) {
+  if (confirm('Nulstil de lokale ændringer på denne enhed til standard?')) {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   }
@@ -337,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Footer
   document.querySelectorAll('.footer-phone').forEach(el => el.textContent = '☎ ' + clubConfig.phone);
   document.querySelectorAll('.footer-website').forEach(el => el.href = clubConfig.website);
+  document.querySelectorAll('.footer-version').forEach(el => el.textContent = 'v' + APP_VERSION);
 
   // Service worker
   if ('serviceWorker' in navigator) {
@@ -359,3 +401,58 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') checkAdminPin();
   });
 });
+
+// --- v2.7.0: INFORMATIONSBJÆLKE (interne links) + POPUP ---
+const POPUP_KEY = 'gd2027_popup_v1';
+(function () {
+  function go(e) {
+    const a = e.target.closest('[data-go]');
+    if (!a) return;
+    e.preventDefault();
+    closePopup(true);
+    navigate(a.getAttribute('data-go'));
+  }
+  let lastFocus = null;
+  function popupEl() { return document.getElementById('gd-popup'); }
+  function openPopup() {
+    const el = popupEl(); if (!el || !el.hidden) return;
+    try { sessionStorage.setItem(POPUP_KEY, '1'); } catch (e) {}
+    lastFocus = document.activeElement;
+    el.hidden = false;
+    el.querySelector('.gd-modal-card').focus();
+  }
+  function closePopup(skipFocus) {
+    const el = popupEl(); if (!el || el.hidden) return;
+    el.hidden = true;
+    if (!skipFocus && lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  window.closePopup = closePopup;
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('gd-ticker')?.addEventListener('click', go);
+    const el = popupEl(); if (!el) return;
+    el.addEventListener('click', e => {
+      if (e.target.closest('[data-close]')) { closePopup(); return; }
+      if (e.target.closest('#gd-pop-signup')) { closePopup(true); return; }
+      go(e);
+    });
+    document.addEventListener('keydown', e => {
+      if (el.hidden) return;
+      if (e.key === 'Escape') { e.preventDefault(); closePopup(); return; }
+      if (e.key === 'Tab') {
+        const f = [...el.querySelectorAll('a[href],button')].filter(x => x.offsetParent !== null);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1], card = el.querySelector('.gd-modal-card');
+        if (e.shiftKey && (document.activeElement === first || document.activeElement === card)) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+    let seen = false;
+    try { seen = !!sessionStorage.getItem(POPUP_KEY); } catch (e) {}
+    if (seen) return;
+    if (document.getElementById('gd-intro')) {
+      document.addEventListener('gd:intro-closed', () => setTimeout(openPopup, 600), { once: true });
+    } else {
+      setTimeout(openPopup, 900);
+    }
+  });
+})();

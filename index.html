@@ -9,9 +9,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Golfens Dag">
   <title>Golfens Dag 2027 – Lyngbygaard Golfklub</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.7.0">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
 
   <!-- Inline SVG-ikoner som symbols – ingen ekstern afhængighed -->
   <svg aria-hidden="true" style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -309,6 +310,18 @@
 
         </div><!-- /home-nav -->
 
+        <!-- KOM I GANG – rigtig knap (erstatter den tidligere billedindbyggede) -->
+        <div class="home-cta-wrap">
+          <a class="home-cta" href="https://lyg.dk/begyndergolf/#kontakt-form"
+             target="_blank" rel="noopener"
+             aria-label="Kom i gang – tilmelding åbner i en ny fane">
+            <span>KOM I GANG</span>
+            <svg class="home-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
         <div class="home-photo-footer">
           <a class="home-photo-link" href="https://lyg.dk" target="_blank" rel="noopener">
             lyg.dk
@@ -353,7 +366,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
@@ -382,7 +395,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
@@ -396,9 +409,22 @@
         <p>Start din golfrejse med os</p>
       </div>
       <div class="page-body">
+        <!-- MICRO-ANIMATION "Klar til dit første slag?" -->
+        <div class="micro-ball-section" id="micro-ball-section">
+          <canvas id="micro-canvas" class="micro-canvas" aria-hidden="true"></canvas>
+          <div class="micro-content" id="micro-content">
+            <p class="micro-eyebrow">Klar til dit første slag?</p>
+            <p class="micro-text">Prøv golf og oplev, hvor sjovt det er at komme i gang.</p>
+            <a class="btn-primary micro-cta"
+               href="https://lyg.dk/begyndergolf/#kontakt-form"
+               target="_blank" rel="noopener"
+               aria-label="Tilmeld dig begynderforløb">
+              TILMELD DIG NU →
+            </a>
+          </div>
+        </div>
+
         <div class="courses-list" id="courses-list" role="list"></div>
-        <a class="btn-primary" href="https://lyg.dk/begyndergolf/#kontakt-form"
-           target="_blank" rel="noopener">Tilmeld begynderforløb</a>
         <div class="info-box">
           <h3>Er du i tvivl?</h3>
           <p>Vi hjælper dig gerne – uanset hvad du undrer dig over.</p>
@@ -419,7 +445,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
@@ -478,7 +504,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
@@ -507,7 +533,7 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
@@ -518,9 +544,15 @@
     <section class="page" id="page-admin" aria-label="Admin">
       <div class="page-header">
         <h1>Admin</h1>
-        <p>Rediger indhold og oplysninger</p>
+        <p>Lokal forhåndsvisning – kun på denne enhed</p>
       </div>
       <div class="page-body">
+        <div class="admin-notice" role="note">
+          <strong>Lokal forhåndsvisning</strong>
+          Ændringer her gemmes kun i denne browser på denne enhed. De opdaterer
+          <u>ikke</u> hjemmesiden for andre besøgende. PIN-koden er kun en let
+          afskærmning mod uforvarende klik og er <u>ikke</u> sikker adgangskontrol.
+        </div>
         <div id="admin-login" class="admin-login-wrap">
           <h2>Indtast PIN-kode</h2>
           <div class="admin-pin-row">
@@ -535,7 +567,7 @@
         </div>
         <div id="admin-content-wrapper" style="display:none">
           <div id="admin-content"></div>
-          <p class="admin-saved" id="admin-saved-msg" role="status" aria-live="polite">✓ Gemt</p>
+          <p class="admin-saved" id="admin-saved-msg" role="status" aria-live="polite">✓ Gemt lokalt på denne enhed – ikke på hjemmesiden</p>
         </div>
       </div>
       <footer class="app-footer">
@@ -547,12 +579,57 @@
         <div class="footer-divider"></div>
         <div class="footer-meta">
           <div class="footer-meta-left">Nordic Operations</div>
-          <div class="footer-meta-right"><span class="footer-version">v2.2</span></div>
+          <div class="footer-meta-right"><span class="footer-version">v2.7.0</span></div>
         </div>
       </footer>
     </section>
 
   </main>
+
+  <!-- ===== INFORMATIONSBJÆLKE (v2.7.0) ===== -->
+  <nav class="ticker" id="gd-ticker" aria-label="Information fra klubben">
+    <div class="ticker-track">
+      <div class="ticker-set">
+        <a class="ticker-item" href="#begynder" data-go="begynder"><span class="ticker-ico" aria-hidden="true">🏌️</span> Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
+        <a class="ticker-item" href="#kontakt" data-go="kontakt"><span class="ticker-ico" aria-hidden="true">⛳</span> Har du allerede golfkortet? Kontakt kontoret og hør om dine muligheder.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
+        <a class="ticker-item" href="https://johnfinmann-ctrl.github.io/LYG-Begynder/" target="_blank" rel="noopener"><span class="ticker-ico" aria-hidden="true">💚</span> GolfStart Lyngbygaard – din vej ind i golfens fællesskab.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
+        <a class="ticker-item" href="#kontakt" data-go="kontakt"><span class="ticker-ico" aria-hidden="true">📞</span> Spørgsmål? Kontakt Lyngbygaard Golfklubs kontor.</a>
+        <span class="ticker-sep" aria-hidden="true">◆</span>
+      </div>
+      <div class="ticker-set" aria-hidden="true">
+        <a class="ticker-item" tabindex="-1" href="#begynder" data-go="begynder"><span class="ticker-ico">🏌️</span> Ny til golf? Husk at tilmelde dig vores begynderforløb.</a>
+        <span class="ticker-sep">◆</span>
+        <a class="ticker-item" tabindex="-1" href="#kontakt" data-go="kontakt"><span class="ticker-ico">⛳</span> Har du allerede golfkortet? Kontakt kontoret og hør om dine muligheder.</a>
+        <span class="ticker-sep">◆</span>
+        <a class="ticker-item" tabindex="-1" href="https://johnfinmann-ctrl.github.io/LYG-Begynder/" target="_blank" rel="noopener"><span class="ticker-ico">💚</span> GolfStart Lyngbygaard – din vej ind i golfens fællesskab.</a>
+        <span class="ticker-sep">◆</span>
+        <a class="ticker-item" tabindex="-1" href="#kontakt" data-go="kontakt"><span class="ticker-ico">📞</span> Spørgsmål? Kontakt Lyngbygaard Golfklubs kontor.</a>
+        <span class="ticker-sep">◆</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== POPUP: BEGYNDERFORLØB OG GOLFKORT (v2.7.0) ===== -->
+  <div class="gd-modal" id="gd-popup" hidden>
+    <div class="gd-modal-backdrop" data-close></div>
+    <div class="gd-modal-card" role="dialog" aria-modal="true" aria-labelledby="gd-pop-title" tabindex="-1">
+      <button class="gd-modal-close" type="button" data-close aria-label="Luk">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l12 12M15 3L3 15"/></svg>
+      </button>
+      <p class="gd-modal-eyebrow">Velkommen til Lyngbygaard Golfklub</p>
+      <h2 class="gd-modal-title" id="gd-pop-title">Vil du gerne begynde at spille golf?</h2>
+      <p class="gd-modal-text">Husk at tilmelde dig vores begynderforløb, hvor du bliver introduceret til golfen og fællesskabet i klubben.</p>
+      <h3 class="gd-modal-sub">Har du allerede golfkortet?</h3>
+      <p class="gd-modal-text">Så kontakt klubbens kontor og hør mere om dine muligheder for at spille golf i Lyngbygaard.</p>
+      <div class="gd-modal-actions">
+        <a class="gd-modal-btn gd-modal-btn-primary" id="gd-pop-signup" href="https://lyg.dk/begyndergolf/#kontakt-form" target="_blank" rel="noopener">TILMELD BEGYNDERFORLØB →</a>
+        <a class="gd-modal-btn gd-modal-btn-ghost" id="gd-pop-office" href="#kontakt" data-go="kontakt">KONTAKT KONTORET →</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== INSTALL BANNER ===== -->
   <div class="install-banner" id="install-btn"
@@ -566,6 +643,7 @@
     <svg class="admin-gear-svg"><use href="#icon-gear"/></svg>
   </button>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.7.0"></script>
+  <script src="intro.js?v=2.7.0"></script>
 </body>
 </html>

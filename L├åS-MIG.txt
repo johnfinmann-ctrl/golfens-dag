@@ -1,0 +1,7 @@
+Golfens Dag 2027 – v2.7.0 (upload-pakke)
+
+Upload: GitHub → repo golfens-dag → Add file → Upload files. Træk ALLE filer og mappen assets/ ind
+(bevar mappestrukturen), commit til main. Slet IKKE golfens-dag-2026/.
+Kontrol efter 1-2 min: appens bund viser v2.7.0, og en grøn informationsbjælke kører nederst.
+iPhone: luk appen/fanen helt og åbn igen (to gange ved gammel cache).
+Mangler: forsidefotografiet fra klubben (ikke modtaget) – forsidebilledet er uændret fra v2.6.2.

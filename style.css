@@ -1,5 +1,5 @@
 /* ============================================================
-   GOLFENS DAG 2026 – style.css v2.1
+   GOLFENS DAG 2027 – style.css v2.7.0
    Lyngbygaard Golfklub · Visuel optimering
    ============================================================ */
 
@@ -406,7 +406,7 @@ button { font-family: inherit; }
    ============================================================ */
 .home-photo-section {
   /* Primary: golf-swing (varmt solnedgangslys, sving) */
-  background-image: url('assets/images/golf-swing.webp');
+  background-image: url('assets/images/golf-swing.webp?v=2.7.0');
   background-size: cover;
   background-repeat: no-repeat;
   /* Mobil: spiller er centreret i billedet, lidt til højre */
@@ -450,6 +450,76 @@ button { font-family: inherit; }
   transition: color var(--ease);
 }
 .home-photo-link:hover { color: #d4a94e; }
+
+/* KOM I GANG – rigtig HTML-knap i en ekstra bund-zone under billedet.
+   Sektionen forlænges med --cta-h nedad (padding-bottom), mens billedet
+   stadig skaleres/placeres efter den oprindelige indholdsboks
+   (background-origin: content-box). Dermed flytter menukortene sig ikke, og
+   billedets komposition og skalering er uændret. Knappen ligger absolut i
+   bundzonen, er smallere end skærmen (min. 4 rem luft i siderne) og kan derfor
+   hverken overlappe de seks kort eller admin-tandhjulet nederst til højre. */
+.home-photo-section {
+  --cta-h: 5.5rem;
+  --cta-band: #0a2a1c;
+  box-sizing: content-box;
+  padding-bottom: var(--cta-h);
+  background-origin: content-box;
+  background-color: var(--cta-band);
+}
+/* Bundzonen er ensfarvet mørkegrøn og tones blødt ind i de nederste 64 px af
+   fotoet (under kortene), så der ikke opstår en hård kant. */
+.home-photo-section::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: calc(var(--cta-h) + 64px);
+  background: linear-gradient(to bottom,
+    rgba(10,42,28,0) 0,
+    var(--cta-band) 64px);
+  pointer-events: none;
+}
+/* MOBIL (< 600 px): hele "GOLFENS DAG 2027" skal kunne læses.
+   Billedet centreres vandret og skaleres, så titlen (ca. 610 af billedets 1400 px)
+   altid er hele vejen inde i skærmen (maks. 612 px højde, mindre på smalle skærme),
+   og sektionen gøres 56 px højere, så de seks kort ligger under titlen i stedet for
+   oven på den. Billedet ender da 56 px før sektionens bund; resten dækkes af den
+   mørke overgang (samme farve som billedets nederste kant). Desktop/tablet er uændret. */
+@media (max-width: 599px) {
+  .home-photo-section {
+    min-height: 668px;
+    background-position: 50% 0;
+    background-size: auto min(612px, calc((100vw - 24px) * 1.7213));
+    background-color: #1e2705;
+  }
+}
+
+.home-cta-wrap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: var(--cta-h);
+  z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4rem;
+}
+.home-cta {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  width: 100%; max-width: 340px; min-height: 54px;
+  padding: .9rem 1.6rem;
+  background: #2a8a3a; color: var(--c-white);
+  border-radius: 99px; border: 1.5px solid rgba(255,255,255,.28);
+  font-size: 1.02rem; font-weight: 800; letter-spacing: .06em; text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0,0,0,.35), 0 0 0 4px rgba(42,138,58,.22);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--ease), background var(--ease), box-shadow var(--ease);
+}
+.home-cta:active { transform: scale(.97); background: #1f6e2d; }
+.home-cta:focus-visible { outline: 3px solid var(--c-gold); outline-offset: 3px; }
+.home-cta-arrow { flex-shrink: 0; transition: transform var(--ease); }
+@media (hover: hover) {
+  .home-cta:hover { background: #31a044; box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 5px rgba(42,138,58,.3); }
+  .home-cta:hover .home-cta-arrow { transform: translateX(3px); }
+}
+@media (min-width: 900px) {
+  .home-cta { max-width: 380px; min-height: 58px; font-size: 1.08rem; }
+}
 
 /* Tablet */
 @media (min-width: 600px) {
@@ -704,6 +774,11 @@ button { font-family: inherit; }
 .admin-section input:focus { border-color: var(--c-green); }
 .admin-course { border-top: 1px solid var(--c-green-light); padding-top: .7rem; margin-top: .7rem; }
 .admin-course strong { display: block; color: var(--c-green); font-size: .86rem; margin-bottom: .45rem; }
+.admin-notice {
+  background: #fff7e0; border: 1.5px solid var(--c-gold); border-radius: var(--r);
+  padding: .85rem 1rem; margin-bottom: 1rem; font-size: .84rem; line-height: 1.5; color: var(--c-text);
+}
+.admin-notice strong { display: block; color: #7a5410; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .25rem; }
 .admin-saved {
   display: none; background: var(--c-green); color: var(--c-white);
   border-radius: 99px; text-align: center; padding: .62rem 1rem;
@@ -790,14 +865,19 @@ button { font-family: inherit; }
   .kontakt-btns { grid-template-columns: repeat(4, 1fr); }
 }
 
+/* Undersider: grøn header- og footer-bånd går i fuld bredde, mens indholdet
+   centreres i en kolonne (--page-w), der vokser med skærmen. */
+:root { --page-w: 560px; }
 @media (min-width: 600px) {
-  .page-header,
-  .page-body { max-width: 560px; margin-left: auto; margin-right: auto; }
-  .page-body { padding-left: 0; padding-right: 0; }
+  .page-header {
+    padding-left:  max(1.25rem, calc((100% - var(--page-w)) / 2));
+    padding-right: max(1.25rem, calc((100% - var(--page-w)) / 2));
+  }
+  .page-body { max-width: var(--page-w); margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0; }
   .home-nav { max-width: 560px; gap: .8rem; }
   .app-footer .footer-top,
   .app-footer .footer-divider,
-  .app-footer .footer-meta { max-width: 560px; margin-left: auto; margin-right: auto; }
+  .app-footer .footer-meta { max-width: var(--page-w); margin-left: auto; margin-right: auto; }
 }
 
 @media (min-width: 900px) {
@@ -813,11 +893,51 @@ button { font-family: inherit; }
   .home-btn-icon-wrap { width: 46px; height: 46px; }
   .home-btn-svg { width: 24px; height: 24px; }
   .home-btn-label { font-size: .88rem; }
-  .page-body, .page-header { max-width: 600px; }
+  :root { --page-w: 940px; }
+  .page-header h1 { font-size: 1.7rem; }
+  .page-header p  { font-size: .92rem; }
+  .page-header { padding-top: 1.9rem; padding-bottom: 1.7rem; }
+  .page-body { padding-top: 1.8rem; }
+
+  /* Golfbegreber: to kolonner */
+  .begreber-list { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+  .term-card { padding: 1rem 1.15rem; }
+
+  /* Begynderforløb: hold side om side */
+  .courses-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: start; }
+  .micro-ball-section { min-height: 190px; }
+  .info-box { max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  /* Om klubben: tre kolonner */
+  .om-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .om-card { padding: 1.5rem 1rem; }
+
+  /* Kontakt: info til venstre, handlinger til højre */
+  #page-kontakt .page-body {
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.25rem; align-items: start;
+  }
+  #page-kontakt .kontakt-info { margin-bottom: 0; padding: 1.8rem 1.4rem; grid-row: 1 / span 2; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  #page-kontakt .kontakt-btns { grid-template-columns: 1fr 1fr; margin-bottom: .95rem; }
+  #page-kontakt .btn-primary { grid-column: 2; }
+
+  /* Program: forløb og stationer side om side */
+  #page-program .page-body {
+    display: grid; grid-template-columns: 1.35fr 1fr; column-gap: 2rem; align-items: start;
+  }
+  #page-program .page-body > .section-label:nth-child(1) { grid-column: 1; grid-row: 1; margin-top: 0; }
+  #page-program .page-body > .timeline                   { grid-column: 1; grid-row: 2; }
+  #page-program .page-body > .section-label:nth-child(3) { grid-column: 2; grid-row: 1; margin-top: 0; }
+  #page-program .page-body > .stations-grid              { grid-column: 2; grid-row: 2; }
+  #page-program .page-body > div:last-child              { grid-column: 1 / -1; grid-row: 3; max-width: 420px; }
+
+  /* Admin: smal formular er bedre end bred */
+  #page-admin { --page-w: 640px; }
 }
 
 /* Bred desktop – udnyt bredden i golfbilledet i stedet for en smal midterstribe */
 @media (min-width: 1280px) {
+  :root { --page-w: 1080px; }
+  .om-grid { grid-template-columns: repeat(3, 1fr); }
   .home-nav {
     max-width: 1080px;
     gap: 1.5rem;
@@ -831,8 +951,144 @@ button { font-family: inherit; }
 }
 
 /* ============================================================
+   MICRO-ANIMATION – "Klar til dit første slag?" (Begynder-side)
+   Overført fra golfens-dag-2026/ og tilpasset rodens palette
+   (samme --c-green / --c-gold variabler, ingen ændringer nødvendige).
+   ============================================================ */
+.micro-ball-section {
+  position: relative;
+  background: var(--c-green);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.micro-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.micro-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 1.5rem 1.25rem 1.4rem;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.micro-content.show {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.micro-eyebrow {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--c-gold);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+
+.micro-text {
+  font-size: .9rem;
+  color: rgba(255,255,255,.78);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.micro-cta {
+  display: inline-flex !important;
+  width: auto !important;
+  padding: .8rem 1.4rem !important;
+  min-height: 44px !important;
+  font-size: .9rem !important;
+  background: var(--c-gold) !important;
+}
+.micro-cta:active { background: #9a7020 !important; }
+
+/* ============================================================
    REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   v2.7.0 – INFORMATIONSBJÆLKE + POPUP
+   ============================================================ */
+:root { --ticker-h: 38px; --ticker-total: calc(var(--ticker-h) + var(--safe-bottom)); }
+body { padding-bottom: var(--ticker-total); }
+.ticker {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  height: var(--ticker-total); padding-bottom: var(--safe-bottom);
+  background: #0B3D2B; border-top: 1px solid rgba(201,164,92,.55);
+  overflow: hidden; color: #fff;
+}
+html.gd-intro-active .ticker { display: none; }
+.ticker-track { display: flex; width: max-content; height: var(--ticker-h); animation: gd-ticker 28s linear infinite; will-change: transform; }
+.ticker:hover .ticker-track, .ticker:focus-within .ticker-track { animation-play-state: paused; }
+.ticker-set { display: flex; align-items: center; flex-shrink: 0; min-width: 100vw; justify-content: space-around; gap: 2.2rem; padding: 0 1.1rem; }
+.ticker-item { color: #fff; text-decoration: none; font-size: .8rem; font-weight: 500; white-space: nowrap; line-height: var(--ticker-h); padding: 0 .25rem; -webkit-tap-highlight-color: transparent; }
+.ticker-item:hover { text-decoration: underline; text-decoration-color: #C9A45C; text-underline-offset: 3px; }
+.ticker-item:focus-visible { outline: 2px solid #C9A45C; outline-offset: -2px; border-radius: 4px; }
+.ticker-sep { color: #C9A45C; font-size: .55rem; opacity: .9; }
+@keyframes gd-ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .ticker { overflow-x: auto; scrollbar-width: none; }
+  .ticker::-webkit-scrollbar { display: none; }
+  .ticker-track { animation: none; }
+  .ticker-set[aria-hidden="true"] { display: none; }
+  .ticker-set { min-width: 0; justify-content: flex-start; }
+}
+/* faste elementer løftes over bjælken */
+.admin-gear { bottom: calc(var(--ticker-total) + .6rem); }
+.install-banner { bottom: calc(var(--ticker-total) + .6rem); }
+
+.gd-modal { position: fixed; inset: 0; z-index: 8000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.gd-modal[hidden] { display: none; }
+.gd-modal-backdrop { position: absolute; inset: 0; background: rgba(4,20,13,.72); animation: gd-fade .35s ease both; }
+.gd-modal-card {
+  position: relative; width: 100%; max-width: 460px; max-height: calc(100vh - 2rem); overflow-y: auto;
+  background: #0B3D2B; color: #F4EFE6; border: 1px solid rgba(201,164,92,.55);
+  border-radius: 20px; padding: 1.7rem 1.4rem 1.4rem; box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  animation: gd-pop .4s cubic-bezier(.2,.7,.2,1) both; outline: none;
+}
+.gd-modal-close {
+  position: absolute; top: .55rem; right: .55rem; width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  background: transparent; border: 1px solid rgba(244,239,230,.25); color: #F4EFE6;
+}
+.gd-modal-close:hover { background: rgba(244,239,230,.1); }
+.gd-modal-eyebrow { color: #C9A45C; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 2.6rem .8rem 0; }
+.gd-modal-title { font-size: 1.4rem; line-height: 1.2; font-weight: 800; color: #fff; margin: 0 0 .6rem; }
+.gd-modal-sub { font-size: 1.05rem; font-weight: 700; color: #fff; margin: 1.1rem 0 .4rem; }
+.gd-modal-text { font-size: .93rem; line-height: 1.5; color: #F4EFE6; margin: 0; }
+.gd-modal-actions { display: flex; flex-direction: column; gap: .65rem; margin-top: 1.4rem; }
+.gd-modal-btn {
+  display: flex; align-items: center; justify-content: center; min-height: 50px; padding: .7rem 1rem;
+  border-radius: 99px; font-weight: 800; font-size: .88rem; letter-spacing: .04em; text-decoration: none; text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.gd-modal-btn-primary { background: #C9A45C; color: #0B3D2B; }
+.gd-modal-btn-primary:hover { background: #d6b36c; }
+.gd-modal-btn-ghost { background: transparent; color: #F4EFE6; border: 1.5px solid rgba(244,239,230,.55); }
+.gd-modal-btn-ghost:hover { background: rgba(244,239,230,.1); }
+.gd-modal-close:focus-visible, .gd-modal-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+@keyframes gd-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes gd-pop { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .gd-modal-backdrop, .gd-modal-card { animation: none; } }
+@media (min-width: 600px) { .gd-modal-card { padding: 2rem 2rem 1.7rem; } .gd-modal-actions { flex-direction: row; } .gd-modal-btn { flex: 1; } }
