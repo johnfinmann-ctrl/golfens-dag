@@ -465,3 +465,35 @@ const POPUP_KEY = 'gd2027_popup_v1';
     }
   });
 })();
+
+// --- v2.7.9: golfbolden nederst triller ind over græsset (bevægelse + rotation i takt) ---
+(function () {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
+  function roll(wrap) {
+    const img = wrap.querySelector('.gd-ball');
+    const turf = wrap.parentElement;
+    if (!img || !turf) return;
+    const d = wrap.offsetWidth;
+    const tr = turf.getBoundingClientRect();
+    const wr = wrap.getBoundingClientRect();
+    const dist = (wr.right - tr.left) + 4;                       // fra uden for venstre kant til hvilestedet
+    const deg = (dist / (d / 2)) * (180 / Math.PI);              // rulning uden glid: vinkel = strækning / radius
+    const turns = Math.max(1, Math.round(deg / 360)) * 360;      // slutter med logoet vendt rigtigt
+    const ease = 'cubic-bezier(.15,.6,.3,1)';
+    const dur = 2600;
+    wrap.animate([{ transform: 'translateX(' + (-dist) + 'px)' }, { transform: 'none' }], { duration: dur, easing: ease });
+    img.animate([{ transform: 'rotate(' + (-turns) + 'deg)' }, { transform: 'none' }], { duration: dur, easing: ease });
+  }
+  const io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      const w = e.target;
+      if (e.isIntersecting && e.intersectionRatio >= 0.6) {
+        if (!w._rolled) { w._rolled = true; roll(w); }
+      } else if (!e.isIntersecting) {
+        w._rolled = false;
+      }
+    });
+  }, { threshold: [0, 0.6] });
+  document.querySelectorAll('.gd-ballwrap').forEach(function (w) { io.observe(w); });
+})();

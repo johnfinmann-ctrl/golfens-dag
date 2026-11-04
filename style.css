@@ -1327,3 +1327,13 @@ html.gd-intro-active .ticker { display: none; }
 
 /* v2.7.9 – admin-tandhjulet flyttes til venstre, så det ikke skjuler versionsnummer/indhold i højre side */
 .admin-gear { right: auto; left: .8rem; opacity: .85; }
+
+/* v2.7.9 – bolden: helt rund 3D-bold, aldrig strakt eller beskåret */
+.gd-turf:not(.micro-turf) { height: clamp(165px, 31vw, 205px); }
+.gd-turf > .gd-ball { height: auto; aspect-ratio: 1 / 1; object-fit: contain; border-radius: 50%; box-shadow: 0 12px 14px -8px rgba(0,35,12,.55); filter: drop-shadow(0 7px 7px rgba(0,30,10,.32)); }
+
+/* v2.7.9 – lavere græs + bold der triller ind (skygge følger bolden, billedet roterer kun) */
+.gd-turf:not(.micro-turf) { --ball: clamp(124px, 32vw, 170px); height: calc(var(--ball) + 30px); }
+.gd-ballwrap { position: absolute; z-index: 2; right: clamp(.75rem, 6vw, 12%); bottom: .3rem; width: var(--ball, 150px); aspect-ratio: 1 / 1; will-change: transform; }
+.gd-ballwrap::after { content: ''; position: absolute; z-index: -1; left: 6%; right: 6%; bottom: -3%; height: 13%; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(0,30,10,.55) 0%, rgba(0,30,10,0) 70%); }
+.gd-ballwrap > .gd-ball { position: static; display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; box-shadow: none; filter: none; will-change: transform; }
