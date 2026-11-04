@@ -98,7 +98,7 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.7.8';
+const APP_VERSION = '2.7.9';
 const APP_UPDATED = '2026-11-04';
 
 const STORAGE_KEY = 'golfensdag2027_config';
@@ -169,13 +169,14 @@ function triggerMicroBall() {
 
   sessionStorage.setItem(MICRO_KEY, '1');
 
+  // Indholdet (overskrift, tekst, knap) vises altid med det samme – bolden animeres bagved
+  content.classList.add('show');
+
   // Kør micro-bold animation (defineret i intro.js)
   if (typeof window.gdMicroBall === 'function') {
     window.gdMicroBall(canvas, function () {
       content.classList.add('show');
     });
-  } else {
-    content.classList.add('show');
   }
 }
 

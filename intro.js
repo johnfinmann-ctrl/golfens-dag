@@ -4,6 +4,38 @@
    tre budskaber + "KOM I GANG"-CTA.
    Additiv – rører ikke eksisterende app-kode.
    ============================================================ */
+/* Fælles, godkendt Lyngbygaard Golf-bold (foto med logo) til alle canvas-bolde */
+window.gdBallImg = window.gdBallImg || (function () {
+  const i = new Image();
+  i.decoding = 'async';
+  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.7.9';
+  return i;
+})();
+/* Tegn bolden som billede: logoet følger boldens bevægelse (let svaj + parallakse) og får kugle-skygge */
+window.gdDrawLogoBall = function (ctx, cx, cy, r, alpha, t, la) {
+  const img = window.gdBallImg;
+  if (!img || !img.complete || !img.naturalWidth || r < 1.5 || alpha < 0.02) return;
+  const sway = Math.sin(t * 1.1) * 0.22;           // svaj omkring boldens akse
+  const dx = Math.sin(t * 0.9) * r * 0.10;          // logoet "ruller" let på kuglen
+  const dy = Math.cos(t * 0.7) * r * 0.06;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
+  ctx.translate(cx + dx, cy + dy); ctx.rotate(sway);
+  ctx.drawImage(img, -r * 1.1, -r * 1.1, r * 2.2, r * 2.2);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.restore();
+  // kugle-skygge (perspektiv) – ændrer ikke logoets form
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
+  const lx = cx + Math.cos(la || 0) * r * 0.3, ly = cy - r * 0.32;
+  const g = ctx.createRadialGradient(lx, ly, r * 0.45, cx, cy, r * 1.04);
+  g.addColorStop(0, 'rgba(0,20,10,0)'); g.addColorStop(1, 'rgba(0,20,10,.34)');
+  ctx.fillStyle = g; ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+  ctx.restore();
+};
+
 (function () {
   'use strict';
 
@@ -222,6 +254,15 @@
       pointer-events: none;
     }
 
+    /* ─── Diskret græs nederst (bag tekst og CTA) ─── */
+    #gd-intro .gd-turf {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      height: clamp(84px, 15vh, 140px); pointer-events: none;
+      background: none; opacity: .7;
+    }
+    #gd-intro .gd-turf::before { height: 80%; }
+    #gd-intro .gd-turf::after  { height: 58%; }
+
     /* ─── Desktop: wider bullets, larger canvas area ─── */
     @media (min-width: 700px) {
       .gd-bullets { max-width: 640px; }
@@ -241,6 +282,8 @@
   overlay.innerHTML = `
     <!-- Baggrundsbillede -->
     <div id="gd-intro-bg"></div>
+
+    <div class="gd-turf" aria-hidden="true"></div>
 
     <!-- Canvas til golfbolde -->
     <canvas id="gd-canvas" aria-hidden="true"></canvas>
@@ -374,69 +417,11 @@
   resize();
   window.addEventListener('resize', resize, { passive: true });
 
-  // ── Tegn realistisk golfbold ─────────────────────────────
-  function drawBall(cx, cy, r, alpha, rot, lightAngle) {
+  // ── Tegn golfbold (godkendt logo-bold) ───────────────────
+  function drawBall(cx, cy, r, alpha, rot, lightAngle, t) {
+    window.gdDrawLogoBall(ctx, cx, cy, r, alpha, t, lightAngle);
     if (r < 1.5 || alpha < 0.02) return;
-    ctx.save();
-    ctx.globalAlpha = alpha;
-
-    ctx.beginPath();
-    ctx.arc(cx, cy, r, 0, Math.PI * 2);
-    ctx.clip();
-
-    // Lys-position
-    const la  = lightAngle || 0;
-    const lx  = cx + Math.cos(la) * r * 0.38;
-    const ly  = cy + Math.sin(la) * r * 0.32;
-
-    // Base-gradient
-    const g = ctx.createRadialGradient(lx, ly, r * 0.04, cx, cy, r * 1.08);
-    g.addColorStop(0,    'rgba(255,255,255,1)');
-    g.addColorStop(0.3,  'rgba(244,244,240,1)');
-    g.addColorStop(0.65, 'rgba(210,213,205,1)');
-    g.addColorStop(1,    'rgba(162,168,158,1)');
-    ctx.fillStyle = g;
-    ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
-
-    // Dimples
-    const dr  = Math.max(1.2, r * 0.085);
-    const rows = [
-      { y: -0.58, n: 5  },
-      { y: -0.28, n: 8  },
-      { y:  0.02, n: 9  },
-      { y:  0.32, n: 7  },
-      { y:  0.58, n: 5  },
-    ];
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(rot);
-    const darkA  = Math.min(0.52, 0.28 + r * 0.004);
-    const lightA = Math.min(0.60, 0.35 + r * 0.003);
-    rows.forEach((row, ri) => {
-      const yy   = row.y * r;
-      const rowR = Math.sqrt(Math.max(0, r * r - yy * yy)) * 0.82;
-      for (let i = 0; i < row.n; i++) {
-        const ang = (i / row.n) * Math.PI * 2 + ri * 0.38;
-        const xx  = Math.cos(ang) * rowR;
-        // Shadow
-        ctx.beginPath(); ctx.arc(xx, yy, dr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(100,112,98,${darkA})`; ctx.fill();
-        // Sheen
-        ctx.beginPath(); ctx.arc(xx - dr*0.3, yy - dr*0.3, dr*0.5, 0, Math.PI*2);
-        ctx.fillStyle = `rgba(255,255,255,${lightA})`; ctx.fill();
-      }
-    });
-    ctx.restore();
-
-    // Specular spot
-    const sg = ctx.createRadialGradient(lx - r*.08, ly - r*.08, r*.01, lx, ly, r*.44);
-    sg.addColorStop(0, 'rgba(255,255,255,.72)');
-    sg.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = sg; ctx.fillRect(cx-r, cy-r, r*2, r*2);
-
-    ctx.restore();
-
-    // Shadow under bold
+    // blød skygge under bolden (som før)
     ctx.save();
     ctx.globalAlpha = alpha * 0.18;
     const sh = ctx.createRadialGradient(cx+r*.12, cy+r*.88, r*.06, cx+r*.08, cy+r*.82, r*.65);
@@ -450,8 +435,8 @@
   // Bolde bevæger sig i tidsvinduet [startT, endT] sekunder fra animation-start.
   // Animation stopper ved totalDur men velkomstskærmen BLIVER STÅENDE.
   const BALLS = [
-    // WOW-bold: venstre hjørne tæt på, kører ud nedad-venstre
-    { id:'wow',  sZ:.02, eZ:1.25, sX:.18, eX:-.05, sY:.62, eY:.92, sT:.8, eT:2.6, rot:0, rs:2.0,  la:-0.6 },
+    // Største bold: kommer frem øverst til venstre (holdes væk fra tekst og CTA)
+    { id:'wow',  sZ:.10, eZ:1.0,  sX:.23, eX:.25,  sY:.34, eY:.20, sT:.8, eT:2.6, rot:0, rs:2.0,  la:-0.6 },
     // Baggrund øverst-midt
     { id:'b1',   sZ:.04, eZ:.22,  sX:.52, eX:.48,  sY:.06, eY:.18, sT:.7, eT:2.5, rot:.3, rs:.5,   la:-0.4 },
     // Stor bold højereside
@@ -482,7 +467,8 @@
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const W = canvas.width, H = canvas.height;
-    const maxR = Math.min(W, H) * 0.50; // WOW-boldmaksimum
+    const maxR = Math.min(W, H) * 0.50; // basis for små bolde
+    const wowR = Math.min(W, H) * 0.17;  // største bold: væsentligt reduceret, aldrig beskåret
 
     BALLS.forEach(b => {
       if (t < b.sT || t > b.eT + .35) return;
@@ -492,7 +478,7 @@
 
       const z    = b.sZ + (b.eZ - b.sZ) * e;
       const r    = b.id === 'wow'
-                     ? maxR * Math.min(z, 1.0)
+                     ? wowR * Math.min(z, 1.0)
                      : maxR * 0.36 * z;
       if (r < 1.5) return;
 
@@ -500,7 +486,7 @@
       let alpha = 1;
       const fi = (t - b.sT)  / .45; if (fi < 1) alpha = Math.max(0, fi);
       const fo = (b.eT - t)  / .55; if (fo < 1) alpha = Math.min(alpha, Math.max(0, fo));
-      if (b.id === 'wow' && z > 1.0) alpha = Math.max(0, 1 - (z-1.0)*3.5);
+      
       if (alpha < .02) return;
 
       const cx  = (b.sX + (b.eX - b.sX) * e) * W;
@@ -511,7 +497,7 @@
       if (z < .10) { ctx.filter = `blur(${((.10-z)/.10)*3}px)`; }
       else         { ctx.filter = 'none'; }
 
-      drawBall(cx, cy, r, alpha, rot, b.la);
+      drawBall(cx, cy, r, alpha, rot, b.la, t + b.rot * 3);
       ctx.filter = 'none';
     });
 
@@ -542,37 +528,13 @@ window.gdMicroBall = function (canvas, onComplete) {
   const rm  = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (rm)   { if (onComplete) onComplete(); return; }
 
-  const maxR  = Math.min(W, H) * 0.36;
+  const maxR  = Math.min(W, H) * 0.20;
   const dur   = 1100;
   let   start = null;
   let   frame;
 
   function drawMini(cx, cy, r, alpha, rot) {
-    if (r < 1.5 || alpha < .02) return;
-    ctx.save(); ctx.globalAlpha = alpha;
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.clip();
-    const lx = cx - r*.25, ly = cy - r*.28;
-    const g  = ctx.createRadialGradient(lx, ly, r*.04, cx, cy, r*1.06);
-    g.addColorStop(0, '#fff'); g.addColorStop(.35,'#f0f0ee');
-    g.addColorStop(.7,'#d2d4ce'); g.addColorStop(1,'#aab0a6');
-    ctx.fillStyle = g; ctx.fillRect(cx-r,cy-r,r*2,r*2);
-    ctx.save(); ctx.translate(cx,cy); ctx.rotate(rot);
-    const dr = Math.max(1,r*.09);
-    for (let row=-2; row<=2; row++) {
-      const yy=row*r*.3, rr=Math.sqrt(Math.max(0,r*r-yy*yy))*.8, cnt=4+Math.abs(row);
-      for (let i=0;i<cnt;i++) {
-        const ang=(i/cnt)*Math.PI*2+row*.4, xx=Math.cos(ang)*rr;
-        ctx.beginPath(); ctx.arc(xx,yy,dr,0,Math.PI*2);
-        ctx.fillStyle='rgba(105,115,102,.45)'; ctx.fill();
-        ctx.beginPath(); ctx.arc(xx-dr*.3,yy-dr*.3,dr*.5,0,Math.PI*2);
-        ctx.fillStyle='rgba(255,255,255,.55)'; ctx.fill();
-      }
-    }
-    ctx.restore();
-    const sg=ctx.createRadialGradient(lx,ly,r*.01,lx,ly,r*.4);
-    sg.addColorStop(0,'rgba(255,255,255,.7)'); sg.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=sg; ctx.fillRect(cx-r,cy-r,r*2,r*2);
-    ctx.restore();
+    window.gdDrawLogoBall(ctx, cx, cy, r, alpha, rot * 2.2, -0.5);
   }
 
   function tick(ts) {
@@ -580,14 +542,15 @@ window.gdMicroBall = function (canvas, onComplete) {
     const t    = Math.min((ts-start)/dur, 1);
     const ease = t<.5 ? 2*t*t : -1+(4-2*t)*t;
     ctx.clearRect(0,0,W,H);
-    const z   = .08 + ease*.9;
+    const z   = .35 + ease*.65;
     const r   = maxR * z;
-    const cx  = W * (.75 - ease*.22);
-    const cy  = H * (.28 + ease*.4);
+    const cx  = W * (.9 - ease*.02);
+    const cy  = H * (.62 - ease*.34);
     const rot = t * 2.2;
     let alpha = 1;
     if (t < .18) alpha = t/.18;
     if (t > .76) alpha = (1-t)/.24;
+    alpha *= .95;
     alpha = Math.max(0,Math.min(1,alpha));
     ctx.filter = z < .15 ? `blur(${(.15-z)*6}px)` : 'none';
     drawMini(cx, cy, r, alpha, rot);
