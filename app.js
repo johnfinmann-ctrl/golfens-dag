@@ -44,16 +44,24 @@ const beginnerCourses = [
 
 // --- PROGRAM ---
 const programItems = [
-  { time: "09.15", title: "Mødetid", icon: "🕘" },
-  { time: "09.30", title: "Klargøring", icon: "🏌️" },
-  { time: "10.00", title: "Velkomst", icon: "👋" },
-  { time: "10.15", title: "Stationer", icon: "⛳" },
-  { time: "12.45", title: "Afslutning", icon: "🏁" }
+  { time: "09.15", title: "Mødetid", icon: "gi-clock" },
+  { time: "09.30", title: "Klargøring", icon: "gi-golfer" },
+  { time: "10.00", title: "Velkomst", icon: "gi-people" },
+  { time: "10.15", title: "Stationer", icon: "gi-flag" },
+  { time: "12.45", title: "Afslutning", icon: "gi-checker" }
 ];
 
+const stationIcons = { Putting: 'gi-putter', Slag: 'gi-club', Indspil: 'gi-pitch', Børn: 'gi-kids', Rundvisning: 'gi-binoc' };
 const stations = ["Putting", "Slag", "Indspil", "Børn", "Rundvisning"];
 
 // --- GOLFBEGREBER ---
+const termIcons = {
+  'Tee': 'gi-ball', 'Fairway': 'gi-trees', 'Rough': 'gi-grass', 'Green': 'gi-flag', 'Putt': 'gi-putter',
+  'Chip': 'gi-chip', 'Pitch': 'gi-pitch', 'Bunker': 'gi-bunker', 'Par': 'gi-trophy', 'Birdie': 'gi-bird',
+  'Bogey': 'gi-bird2', 'Handicap': 'gi-chart', 'DGU-kort': 'gi-card', 'Stableford': 'gi-score',
+  'Tee-sted': 'gi-markers', 'Hulflag': 'gi-flag', 'Out of Bounds': 'gi-stakes', 'Vandhazard': 'gi-water',
+  'Provisorisk bold': 'gi-ball'
+};
 const golfTerms = [
   { term: "Tee", def: "Startstedet for hvert hul. Spillerne slår fra tee-stedet." },
   { term: "Fairway", def: "Den klippede midtergang fra tee til green." },
@@ -90,8 +98,8 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.7.7';
-const APP_UPDATED = '2026-11-03';
+const APP_VERSION = '2.7.8';
+const APP_UPDATED = '2026-11-04';
 
 const STORAGE_KEY = 'golfensdag2027_config';
 const LEGACY_STORAGE_KEY = 'golfensdag2026_config'; // for migrering, se nedenfor
@@ -188,7 +196,7 @@ function renderProgram() {
       <div class="timeline-time">${item.time}</div>
       <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
       <div class="timeline-content">
-        <span class="timeline-icon" aria-hidden="true">${item.icon}</span>
+        <svg class="gi" aria-hidden="true" focusable="false"><use href="#${item.icon}"/></svg>
         <span class="timeline-title">${item.title}</span>
       </div>
     </div>
@@ -196,7 +204,7 @@ function renderProgram() {
 
   const stationsEl = document.getElementById('stations-list');
   stationsEl.innerHTML = stations.map(s => `
-    <div class="station-chip" role="listitem">⛳ ${s}</div>
+    <div class="station-chip" role="listitem"><svg class="gi" aria-hidden="true" focusable="false"><use href="#${stationIcons[s] || 'gi-flag'}"/></svg><span>${s}</span></div>
   `).join('');
 }
 
@@ -204,7 +212,7 @@ function renderBegreber() {
   const list = document.getElementById('begreber-list');
   list.innerHTML = golfTerms.map(t => `
     <div class="term-card" role="listitem">
-      <div class="term-badge">${t.term}</div>
+      <svg class="gi" aria-hidden="true" focusable="false"><use href="#${termIcons[t.term] || 'gi-ball'}"/></svg>
       <div class="term-body">
         <div class="term-name">${t.term}</div>
         <div class="term-def">${t.def}</div>
@@ -235,7 +243,7 @@ function renderBegynder() {
 function renderKontakt() {
   document.getElementById('kontakt-name').textContent = clubConfig.name;
   document.getElementById('kontakt-address').textContent = clubConfig.address + ', ' + clubConfig.city;
-  document.getElementById('kontakt-phone-text').textContent = '☎ ' + clubConfig.phone;
+  document.getElementById('kontakt-phone-text').textContent = clubConfig.phone;
   document.getElementById('kontakt-email-text').textContent = clubConfig.email;
 
   document.getElementById('btn-ring').href = 'tel:' + clubConfig.phone.replace(/\s/g, '');
@@ -377,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderOm();
 
   // Footer
-  document.querySelectorAll('.footer-phone').forEach(el => el.textContent = '☎ ' + clubConfig.phone);
+  document.querySelectorAll('.footer-phone').forEach(el => el.textContent = clubConfig.phone);
   document.querySelectorAll('.footer-website').forEach(el => el.href = clubConfig.website);
   document.querySelectorAll('.footer-version').forEach(el => el.textContent = 'v' + APP_VERSION);
 
