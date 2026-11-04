@@ -1308,3 +1308,7 @@ html.gd-intro-active .ticker { display: none; }
 /* v2.7.8 – justeringer */
 @media (min-width: 900px) { #page-kontakt .kontakt-info { justify-content: flex-end; padding: 1.4rem 1.5rem; } }
 .kc-line .gi { background: #fff; border-radius: 50%; padding: .3rem; box-sizing: content-box; width: 1.3rem; height: 1.3rem; }
+
+/* v2.7.8 – foto-bold med logo */
+.gd-ball { border-radius: 50%; aspect-ratio: 1; object-fit: cover; filter: drop-shadow(0 8px 8px rgba(0,0,0,.3)); }
+.gd-ball { width: clamp(124px, 32vw, 170px); }

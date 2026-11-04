@@ -23,6 +23,7 @@ const ASSETS = [
   './assets/images/golfbegreber-flag.webp?v=2.7.8',
   './assets/images/begynderforloeb-bolde.webp?v=2.7.8',
   './assets/images/kontakt-klubhus.webp?v=2.7.8',
+  './assets/images/lyngbygaard-golfbold.webp?v=2.7.8',
   './assets/images/om-restaurant.webp?v=2.7.8',
   './assets/images/om-traenerteam-bolde.webp?v=2.7.8',
   './assets/images/om-begynderhold-bold.webp?v=2.7.8',
