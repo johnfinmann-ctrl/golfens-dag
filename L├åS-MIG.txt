@@ -1,2 +1,5 @@
-Golfens Dag 2027 – v2.7.10 (Om-siden: nyt Hjemmeside-billede)
-Ikke publiceret. Upload kun efter saerskilt godkendelse. Mappen golfens-dag-2026/ er uroert.
+Golfens Dag 2027 – v2.8.0 (komplet filsæt, klar til GitHub-upload, ingen build)
+Ændringer: ét fælles Lyngbygaard Golf-bold overalt (ikoner, intro, animationer, bund-bold),
+nyt foto på kortet "Begynderhold", Lyngbygaard-logo på bolde i forsidens fotokort.
+Cache-version 2.8.0 håndteres automatisk (service worker + ?v=2.8.0).
+Gamle filer i assets/images ligger uændret; golfens-dag-2026/ er ikke berørt.

@@ -8,7 +8,7 @@
 window.gdBallImg = window.gdBallImg || (function () {
   const i = new Image();
   i.decoding = 'async';
-  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.7.10';
+  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.8.0';
   return i;
 })();
 /* Tegn bolden som billede: logoet følger boldens bevægelse (let svaj + parallakse) og får kugle-skygge */
@@ -438,19 +438,19 @@ window.gdDrawLogoBall = function (ctx, cx, cy, r, alpha, t, la) {
     // Største bold: kommer frem øverst til venstre (holdes væk fra tekst og CTA)
     { id:'wow',  sZ:.10, eZ:1.0,  sX:.23, eX:.25,  sY:.34, eY:.20, sT:.8, eT:2.6, rot:0, rs:2.0,  la:-0.6 },
     // Baggrund øverst-midt
-    { id:'b1',   sZ:.04, eZ:.22,  sX:.52, eX:.48,  sY:.06, eY:.18, sT:.7, eT:2.5, rot:.3, rs:.5,   la:-0.4 },
+    { id:'b1',   sZ:.04, eZ:.26,  sX:.52, eX:.48,  sY:.06, eY:.18, sT:.7, eT:2.5, rot:.3, rs:.5,   la:-0.4 },
     // Stor bold højereside
     { id:'b2',   sZ:.06, eZ:.48,  sX:.95, eX:.82,  sY:.18, eY:.38, sT:1.0,eT:2.8, rot:-.2,rs:.85,  la: 0.2 },
     // Lille bold venstre midt
-    { id:'b3',   sZ:.03, eZ:.18,  sX:.08, eX:.18,  sY:.42, eY:.55, sT:.9, eT:2.6, rot:.6, rs:.4,   la:-0.3 },
+    { id:'b3',   sZ:.03, eZ:.24,  sX:.08, eX:.18,  sY:.42, eY:.55, sT:.9, eT:2.6, rot:.6, rs:.4,   la:-0.3 },
     // Mellemstor bold midt-bund
     { id:'b4',   sZ:.07, eZ:.42,  sX:.65, eX:.72,  sY:.72, eY:.62, sT:1.2,eT:2.9, rot:-.5,rs:.7,   la: 0.3 },
     // Lille bold højre top
-    { id:'b5',   sZ:.03, eZ:.14,  sX:.88, eX:.92,  sY:.08, eY:.15, sT:.8, eT:2.4, rot:.4, rs:.35,  la:-0.1 },
+    { id:'b5',   sZ:.03, eZ:.20,  sX:.88, eX:.92,  sY:.08, eY:.15, sT:.8, eT:2.4, rot:.4, rs:.35,  la:-0.1 },
     // Medium bold venstre top
     { id:'b6',   sZ:.05, eZ:.35,  sX:.05, eX:.12,  sY:.22, eY:.38, sT:1.1,eT:2.7, rot:.8, rs:.65,  la: 0.4 },
     // Bageste lille bold midt-højre
-    { id:'b7',   sZ:.02, eZ:.12,  sX:.70, eX:.68,  sY:.14, eY:.24, sT:.6, eT:2.2, rot:.2, rs:.28,  la:-0.2 },
+    { id:'b7',   sZ:.02, eZ:.17,  sX:.70, eX:.68,  sY:.14, eY:.24, sT:.6, eT:2.2, rot:.2, rs:.28,  la:-0.2 },
   ];
 
   const ANIM_DUR = 3200; // animation kører i 3.2 sek, overlay forbliver
