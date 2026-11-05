@@ -8,7 +8,7 @@
 window.gdBallImg = window.gdBallImg || (function () {
   const i = new Image();
   i.decoding = 'async';
-  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.7.9';
+  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.7.10';
   return i;
 })();
 /* Tegn bolden som billede: logoet følger boldens bevægelse (let svaj + parallakse) og får kugle-skygge */
