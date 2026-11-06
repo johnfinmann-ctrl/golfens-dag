@@ -8,7 +8,7 @@
 window.gdBallImg = window.gdBallImg || (function () {
   const i = new Image();
   i.decoding = 'async';
-  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.8.0';
+  i.src = 'assets/images/lyngbygaard-golfbold.webp?v=2.9.0';
   return i;
 })();
 /* Tegn bolden som billede: logoet følger boldens bevægelse (let svaj + parallakse) og får kugle-skygge */
@@ -38,6 +38,9 @@ window.gdDrawLogoBall = function (ctx, cx, cy, r, alpha, t, la) {
 
 (function () {
   'use strict';
+
+  // v2.9.0: den nye velkomstanimation (velkomst.js) overtager; denne intro er bevaret dormant.
+  if (window.GD_VELKOMST) return;
 
   // ── Session: vis kun første gang ──────────────────────────
   const SESSION_KEY = 'gd2027_intro_v1';

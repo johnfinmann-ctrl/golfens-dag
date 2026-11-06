@@ -1,5 +1,5 @@
-Golfens Dag 2027 – v2.8.0 (komplet filsæt, klar til GitHub-upload, ingen build)
-Ændringer: ét fælles Lyngbygaard Golf-bold overalt (ikoner, intro, animationer, bund-bold),
-nyt foto på kortet "Begynderhold", Lyngbygaard-logo på bolde i forsidens fotokort.
-Cache-version 2.8.0 håndteres automatisk (service worker + ?v=2.8.0).
-Gamle filer i assets/images ligger uændret; golfens-dag-2026/ er ikke berørt.
+Golfens Dag 2027 – v2.9.0 (komplet filsæt, klar til GitHub-upload, ingen build)
+Ny velkomstanimation: bold med Lyngbygaard Golf-logo ruller mod flaget (velkomst.js, WebGL, ingen video).
+Spilles én gang pr. session. "Spring over" + Esc. Reduceret bevægelse respekteres.
+Gammel intro (intro.js) ligger dormant. Indeholder også v2.8.0 (bold-audit, Begynderhold-foto, logo på bolde i forsidekort).
+Cache-version 2.9.0 håndteres automatisk (service worker + ?v=2.9.0). golfens-dag-2026/ er ikke berørt.

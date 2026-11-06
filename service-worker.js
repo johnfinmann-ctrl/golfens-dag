@@ -1,35 +1,38 @@
 /* ============================================================
-   Golfens Dag 2027 – service-worker.js v2.8.0
-   Cache: golfens-dag-v2.8.0
+   Golfens Dag 2027 – service-worker.js v2.9.0
+   Cache: golfens-dag-v2.9.0
    Overført og tilpasset fra golfens-dag-2026/ (v2.4.2) til rodens
    faktiske filsæt. Skift CACHE_NAME ved enhver ny deploy, så
    gamle billeder/layout ikke hænger fast i brugernes cache.
    ============================================================ */
-const CACHE_NAME = 'golfens-dag-v2.8.0';
+const CACHE_NAME = 'golfens-dag-v2.9.0';
 
 // Assets med ?v= querystring matcher de faktiske requests fra index.html
 const ASSETS = [
   './',
   './index.html',
-  './style.css?v=2.8.0',
-  './app.js?v=2.8.0',
-  './intro.js?v=2.8.0',
+  './style.css?v=2.9.0',
+  './app.js?v=2.9.0',
+  './intro.js?v=2.9.0',
+  './velkomst.js?v=2.9.0',
+  './assets/images/velkomst-golfbane.webp?v=2.9.0',
+  './assets/images/lyngbygaard-logo-decal.webp?v=2.9.0',
   './manifest.json',
-  './assets/images/forside-golfbane.webp?v=2.8.0',
-  './assets/images/forside-golfbane-mobil.webp?v=2.8.0',
-  './assets/images/forside-bold-logo.webp?v=2.8.0',
-  './assets/images/program-kalender-logo.webp?v=2.8.0',
-  './assets/images/traenerteam-golfbag.webp?v=2.8.0',
-  './assets/images/golfbegreber-flag.webp?v=2.8.0',
-  './assets/images/begynderforloeb-bolde-logo.webp?v=2.8.0',
-  './assets/images/kontakt-klubhus.webp?v=2.8.0',
-  './assets/images/lyngbygaard-golfbold.webp?v=2.8.0',
-  './assets/images/om-restaurant.webp?v=2.8.0',
-  './assets/images/om-traenerteam-bolde.webp?v=2.8.0',
-  './assets/images/om-begynderhold-tre-spillere.webp?v=2.8.0',
-  './assets/images/om-hjemmeside-place-to-play.webp?v=2.8.0',
-  './assets/images/om-18-bane.webp?v=2.8.0',
-  './assets/images/om-9-bane.webp?v=2.8.0',
+  './assets/images/forside-golfbane.webp?v=2.9.0',
+  './assets/images/forside-golfbane-mobil.webp?v=2.9.0',
+  './assets/images/forside-bold-logo.webp?v=2.9.0',
+  './assets/images/program-kalender-logo.webp?v=2.9.0',
+  './assets/images/traenerteam-golfbag.webp?v=2.9.0',
+  './assets/images/golfbegreber-flag.webp?v=2.9.0',
+  './assets/images/begynderforloeb-bolde-logo.webp?v=2.9.0',
+  './assets/images/kontakt-klubhus.webp?v=2.9.0',
+  './assets/images/lyngbygaard-golfbold.webp?v=2.9.0',
+  './assets/images/om-restaurant.webp?v=2.9.0',
+  './assets/images/om-traenerteam-bolde.webp?v=2.9.0',
+  './assets/images/om-begynderhold-tre-spillere.webp?v=2.9.0',
+  './assets/images/om-hjemmeside-place-to-play.webp?v=2.9.0',
+  './assets/images/om-18-bane.webp?v=2.9.0',
+  './assets/images/om-9-bane.webp?v=2.9.0',
 ];
 
 // Install: cache alle assets, skipWaiting så ny SW overtager hurtigt
