@@ -1,5 +1,5 @@
 /* ============================================================
-   Golfens Dag 2027 – velkomst.js (v3.0.4, TESTVERSION)
+   Golfens Dag 2027 – velkomst.js (v3.0.6, TESTVERSION)
    Ny velkomstanimation: bolden med Lyngbygaard Golf-logo ruller
    over green'en mod flaget (morgenlys-baggrund).
    - Bolden er en rigtig 3D-kugle (WebGL): dimples, lys, rotation
@@ -15,9 +15,9 @@
   // ── CONFIG ───────────────────────────────────────────────
   const CONFIG = {
     SESSION_KEY: 'gd2027_intro_v1',
-    BG_SRC: 'assets/images/velkomst-golfbane.webp?v=3.0.4',
-    DECAL_SRC: 'assets/images/lyngbygaard-logo-decal.webp?v=3.0.4',
-    FALLBACK_BALL_SRC: 'assets/images/lyngbygaard-golfbold.webp?v=3.0.4',
+    BG_SRC: 'assets/images/velkomst-golfbane.webp?v=3.0.6',
+    DECAL_SRC: 'assets/images/lyngbygaard-logo-decal.webp?v=3.0.6',
+    FALLBACK_BALL_SRC: 'assets/images/lyngbygaard-golfbold.webp?v=3.0.6',
     BG_W: 1529, BG_H: 860,          // baggrundsbilledets pixelmål
     FLAG_BASE: [765, 628],          // hul/flagstangens fod i billedet
     FLAG_RECT: [758, 388, 790, 468],// flagdug + stang-top (x0,y0,x1,y1) i billedet

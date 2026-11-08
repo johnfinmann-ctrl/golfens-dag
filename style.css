@@ -406,7 +406,7 @@ button { font-family: inherit; }
    ============================================================ */
 .home-photo-section {
   /* Primary: golf-swing (varmt solnedgangslys, sving) */
-  background-image: url('assets/images/golf-swing.webp?v=3.0.4');
+  background-image: url('assets/images/golf-swing.webp?v=3.0.6');
   background-size: cover;
   background-repeat: no-repeat;
   /* Mobil: spiller er centreret i billedet, lidt til højre */
@@ -1104,7 +1104,7 @@ html.gd-intro-active .ticker { display: none; }
   padding: 1.6rem 0 1.6rem; overflow: hidden; color: var(--cream);
   background:
     linear-gradient(to bottom, rgba(5,25,16,.62) 0%, rgba(5,25,16,.3) 32%, rgba(5,25,16,.25) 62%, rgba(5,25,16,.78) 100%),
-    url('assets/images/forside-golfbane-mobil.webp?v=3.0.4') 50% 30% / cover no-repeat #0B3D2B;
+    url('assets/images/forside-golfbane-mobil.webp?v=3.0.6') 50% 30% / cover no-repeat #0B3D2B;
 }
 .gh-copy { text-align: center; padding: 0 1rem; margin-bottom: 1.6rem; }
 .gh-eyebrow { display: flex; align-items: center; justify-content: center; gap: .8rem; margin: 0 0 .7rem; }
@@ -1141,12 +1141,12 @@ html.gd-intro-active .ticker { display: none; }
 .gh-card:active { transform: scale(.98); }
 
 /* Foto pr. kort (object-fit: cover-ækvivalent via background-size: cover). */
-.gh-card[data-card="om"]  { --img: url('assets/images/forside-bold-logo.webp?v=3.0.4'); }
-.gh-card[data-card="program"]  { --img: url('assets/images/program-kalender-logo.webp?v=3.0.4'); }
-.gh-card[data-card="traener"]  { --img: url('assets/images/traenerteam-golfbag.webp?v=3.0.4'); }
-.gh-card[data-card="begreber"] { --img: url('assets/images/golfbegreber-flag.webp?v=3.0.4'); }
-.gh-card[data-card="begynder"] { --img: url('assets/images/begynderforloeb-bolde-logo.webp?v=3.0.4'); }
-.gh-card[data-card="kontakt"]  { --img: url('assets/images/kontakt-klubhus.webp?v=3.0.4'); }
+.gh-card[data-card="om"]  { --img: url('assets/images/forside-bold-logo.webp?v=3.0.6'); }
+.gh-card[data-card="program"]  { --img: url('assets/images/program-kalender-logo.webp?v=3.0.6'); }
+.gh-card[data-card="traener"]  { --img: url('assets/images/traenerteam-golfbag.webp?v=3.0.6'); }
+.gh-card[data-card="begreber"] { --img: url('assets/images/golfbegreber-flag.webp?v=3.0.6'); }
+.gh-card[data-card="begynder"] { --img: url('assets/images/begynderforloeb-bolde-logo.webp?v=3.0.6'); }
+.gh-card[data-card="kontakt"]  { --img: url('assets/images/kontakt-klubhus.webp?v=3.0.6'); }
 .gh-card[data-card="om"]  .gh-card-photo { background-position: 44% 55%; }
 .gh-card[data-card="program"]  .gh-card-photo { background-position: 55% 50%; }
 .gh-card[data-card="traener"]  .gh-card-photo { background-position: 72% 45%; }
@@ -1176,7 +1176,7 @@ html.gd-intro-active .ticker { display: none; }
 @media (min-width: 700px) {
   .gh { padding-top: 2.6rem; background:
     linear-gradient(to bottom, rgba(5,25,16,.62) 0%, rgba(5,25,16,.3) 32%, rgba(5,25,16,.25) 62%, rgba(5,25,16,.78) 100%),
-    url('assets/images/forside-golfbane.webp?v=3.0.4') center 40% / cover no-repeat #0B3D2B; }
+    url('assets/images/forside-golfbane.webp?v=3.0.6') center 40% / cover no-repeat #0B3D2B; }
   .gh { justify-content: center; padding-top: 1.6rem; padding-bottom: 1.6rem; }
   .gh-copy { margin-bottom: 1.5rem; }
   .gh-grid { margin-top: 0; }
@@ -1218,16 +1218,16 @@ html.gd-intro-active .ticker { display: none; }
 
 /* v2.7.7 – Om Lyngbygaard Golf: seks fotokort (samme stil som forsiden) */
 .om-grid .gh-card { min-height: 0; }
-.gh-card[data-card="om-18"]         { --img: url('assets/images/om-18-bane.webp?v=3.0.4'); }
-.gh-card[data-card="om-9"]          { --img: url('assets/images/om-9-bane.webp?v=3.0.4'); }
-.gh-card[data-card="om-restaurant"] { --img: url('assets/images/om-restaurant.webp?v=3.0.4'); }
-.gh-card[data-card="om-traener"]    { --img: url('assets/images/om-traenerteam-bolde.webp?v=3.0.4'); }
+.gh-card[data-card="om-18"]         { --img: url('assets/images/om-18-bane.webp?v=3.0.6'); }
+.gh-card[data-card="om-9"]          { --img: url('assets/images/om-9-bane.webp?v=3.0.6'); }
+.gh-card[data-card="om-restaurant"] { --img: url('assets/images/om-restaurant.webp?v=3.0.6'); }
+.gh-card[data-card="om-traener"]    { --img: url('assets/images/om-traenerteam-bolde.webp?v=3.0.6'); }
 .gh-card[data-card="om-18"]         .gh-card-photo { background-position: 50% 50%; }
 .gh-card[data-card="om-9"]          .gh-card-photo { background-position: 50% 50%; }
 .gh-card[data-card="om-restaurant"] .gh-card-photo { background-position: 50% 50%; }
 .gh-card[data-card="om-traener"]    .gh-card-photo { background-position: 50% 50%; }
-.gh-card[data-card="om-begynder"] { --img: url('assets/images/om-begynderhold-tre-spillere.webp?v=3.0.4'); }
-.gh-card[data-card="om-web"]      { --img: url('assets/images/om-hjemmeside-place-to-play.webp?v=3.0.4'); }
+.gh-card[data-card="om-begynder"] { --img: url('assets/images/om-begynderhold-tre-spillere.webp?v=3.0.6'); }
+.gh-card[data-card="om-web"]      { --img: url('assets/images/om-hjemmeside-place-to-play.webp?v=3.0.6'); }
 .gh-card[data-card="om-begynder"] .gh-card-photo { background-position: 50% 50%; }
 .gh-card[data-card="om-web"]      .gh-card-photo { background-position: 50% 50%; }
 
@@ -1264,7 +1264,7 @@ html.gd-intro-active .ticker { display: none; }
   padding: 1.1rem 1.15rem 1.15rem; border-radius: 22px; box-shadow: 0 10px 26px rgba(11,61,43,.28);
   background:
     linear-gradient(to bottom, rgba(11,61,43,0) 0%, rgba(11,61,43,.35) 36%, rgba(11,61,43,.94) 70%, #0B3D2B 100%),
-    url('assets/images/forside-golfbane.webp?v=3.0.4') 50% 40% / cover no-repeat #0B3D2B;
+    url('assets/images/forside-golfbane.webp?v=3.0.6') 50% 40% / cover no-repeat #0B3D2B;
 }
 .kc-id { display: flex; gap: .8rem; align-items: flex-start; }
 .kc-pin { width: 2.3rem; height: 2.3rem; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
@@ -1287,7 +1287,7 @@ html.gd-intro-active .ticker { display: none; }
 .page-header.hdr-course {
   background:
     linear-gradient(90deg, #0B3D2B 0%, rgba(11,61,43,.82) 45%, rgba(11,61,43,.2) 100%),
-    url('assets/images/forside-golfbane.webp?v=3.0.4') 50% 62% / cover no-repeat #0B3D2B;
+    url('assets/images/forside-golfbane.webp?v=3.0.6') 50% 62% / cover no-repeat #0B3D2B;
 }
 .page-header.hdr-course p { color: rgba(255,255,255,.9); }
 .timeline-time { font-size: .95rem; font-weight: 800; color: var(--c-green); }
@@ -1339,7 +1339,7 @@ html.gd-intro-active .ticker { display: none; }
 .gd-ballwrap > .gd-ball { position: static; display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; box-shadow: none; filter: none; will-change: transform; }
 
 /* ============================================================
-   v3.0.4 – PREMIUM DESIGNLØFT (forside)
+   v3.0.6 – PREMIUM DESIGNLØFT (forside)
    Kun typografi, luft, kontrast og ny sektion. Kort, links, funktioner uændrede.
    ============================================================ */
 :root { --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, 'Times New Roman', serif; }
@@ -1349,7 +1349,7 @@ html.gd-intro-active .ticker { display: none; }
   background:
     radial-gradient(120% 60% at 50% 12%, rgba(5,25,16,.55) 0%, rgba(5,25,16,0) 70%),
     linear-gradient(to bottom, rgba(5,25,16,.66) 0%, rgba(5,25,16,.32) 34%, rgba(5,25,16,.3) 62%, rgba(5,25,16,.82) 100%),
-    url('assets/images/forside-golfbane-mobil.webp?v=3.0.4') 50% 30% / cover no-repeat #0B3D2B; }
+    url('assets/images/forside-golfbane-mobil.webp?v=3.0.6') 50% 30% / cover no-repeat #0B3D2B; }
 .gh-copy { margin-bottom: 2.4rem; padding: 0 1.25rem; }
 .gh-eyebrow { gap: 1rem; margin: 0 0 1.1rem; }
 .gh-eyebrow::before, .gh-eyebrow::after { background: #D8B873; width: clamp(28px, 10vw, 96px); }
@@ -1373,7 +1373,7 @@ html.gd-intro-active .ticker { display: none; }
     background:
       radial-gradient(90% 50% at 50% 14%, rgba(5,25,16,.5) 0%, rgba(5,25,16,0) 70%),
       linear-gradient(to bottom, rgba(5,25,16,.62) 0%, rgba(5,25,16,.3) 32%, rgba(5,25,16,.25) 62%, rgba(5,25,16,.78) 100%),
-      url('assets/images/forside-golfbane.webp?v=3.0.4') center 40% / cover no-repeat #0B3D2B; }
+      url('assets/images/forside-golfbane.webp?v=3.0.6') center 40% / cover no-repeat #0B3D2B; }
   .gh-copy { margin-bottom: 2.6rem; }
   .gh-grid { gap: 1.3rem; }
   .gh-card { border-radius: 18px; }
@@ -1412,12 +1412,12 @@ html.gd-intro-active .ticker { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .gh-why-btn { transition: none; } }
 @media (min-width: 700px) { .gh { min-height: min(calc(100vh - var(--header-full) - var(--ticker-total)), 780px); } }
-/* v3.0.4: smalle skærme (≤359 px) – kortene må ikke stikke ud (min-højde tvang bredden) */
+/* v3.0.6: smalle skærme (≤359 px) – kortene må ikke stikke ud (min-højde tvang bredden) */
 .gh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (min-width: 700px) { .gh-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 359px) { .gh-card { min-height: 0; } .gh-card-label { font-size: .88rem; right: 2rem; } .gh-grid { gap: .7rem; } }
 
-/* v3.0.4: "Kom og oplev golfens verden" – elegant tekst direkte på golfbaggrunden (ingen boks, ingen ikoner) */
+/* v3.0.6: "Kom og oplev golfens verden" – elegant tekst direkte på golfbaggrunden (ingen boks, ingen ikoner) */
 .gh-oplev { position: relative; width: 100%; max-width: 720px; margin: 0 auto 1.5rem; padding: 0 1.25rem; text-align: center; color: #F4EFE6; isolation: isolate; }
 .gh-oplev::before { content: ''; position: absolute; inset: -1.2rem -10% -1rem; z-index: -1; pointer-events: none;
   background: radial-gradient(ellipse at center, rgba(5,25,16,.55) 0%, rgba(5,25,16,.32) 55%, rgba(5,25,16,0) 78%); }
@@ -1427,14 +1427,14 @@ html.gd-intro-active .ticker { display: none; }
 @media (min-width: 700px) { .gh-oplev { margin-bottom: 2.3rem; max-width: 780px; } .gh-oplev-title { font-size: 2.1rem; } }
 
 /* ============================================================
-   v3.0.4 – finpudsning: ægte klubfoto som baggrund, lysere toning,
+   v3.0.6 – finpudsning: ægte klubfoto som baggrund, lysere toning,
    mindre tom plads, blød overgang til creme, diskret informationsbjælke
    ============================================================ */
 .gh { min-height: 0; padding: 1.7rem 0 2.9rem;
   background:
     radial-gradient(ellipse 120% 34% at 50% 27%, rgba(5,25,16,.40) 0%, rgba(5,25,16,0) 72%),
     linear-gradient(to bottom, rgba(5,25,16,.36) 0%, rgba(5,25,16,.08) 34%, rgba(5,25,16,.05) 62%, rgba(5,25,16,.34) 100%),
-    url('assets/images/forside-hero-bane-mobil.webp?v=3.0.4') 50% 35% / cover no-repeat #0B3D2B; }
+    url('assets/images/forside-hero-bane-mobil.webp?v=3.0.6') 50% 35% / cover no-repeat #0B3D2B; }
 .gh::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 46px; pointer-events: none;
   background: linear-gradient(to bottom, rgba(244,239,230,0) 0%, #F4EFE6 100%); }
 .gh-copy { margin-bottom: 1.3rem; }
@@ -1448,7 +1448,7 @@ html.gd-intro-active .ticker { display: none; }
     background:
       radial-gradient(ellipse 80% 34% at 50% 26%, rgba(5,25,16,.38) 0%, rgba(5,25,16,0) 72%),
       linear-gradient(to bottom, rgba(5,25,16,.34) 0%, rgba(5,25,16,.07) 34%, rgba(5,25,16,.05) 62%, rgba(5,25,16,.32) 100%),
-      url('assets/images/forside-hero-bane-mobil.webp?v=3.0.4') 50% 38% / cover no-repeat #0B3D2B; }
+      url('assets/images/forside-hero-bane-mobil.webp?v=3.0.6') 50% 38% / cover no-repeat #0B3D2B; }
   .gh-copy { margin-bottom: 1.6rem; }
   .gh-oplev { margin-bottom: 1.8rem; }
   .gh-cta-wrap { padding-top: 1.5rem; }
@@ -1458,7 +1458,7 @@ html.gd-intro-active .ticker { display: none; }
   .gh { background:
       radial-gradient(ellipse 80% 34% at 50% 26%, rgba(5,25,16,.38) 0%, rgba(5,25,16,0) 72%),
       linear-gradient(to bottom, rgba(5,25,16,.34) 0%, rgba(5,25,16,.07) 34%, rgba(5,25,16,.05) 62%, rgba(5,25,16,.32) 100%),
-      url('assets/images/forside-hero-bane.webp?v=3.0.4') 20% 45% / cover no-repeat #0B3D2B; }
+      url('assets/images/forside-hero-bane.webp?v=3.0.6') 20% 45% / cover no-repeat #0B3D2B; }
 }
 
 /* Informationsbjælke: rolig, diskret, to budskaber der skiftes (ingen tekst skæres af) */
@@ -1477,5 +1477,9 @@ html.gd-intro-active .ticker { display: none; }
   .ticker-item { grid-area: auto; opacity: 1; visibility: visible; animation: none; font-size: .72rem; }
 }
 
-/* v3.0.4: nyhedsbjælken har én rolig besked til gæsterne (ingen skift) */
+/* v3.0.6: nyhedsbjælken har én rolig besked til gæsterne (ingen skift) */
 .ticker-item:only-child { opacity: 1; visibility: visible; animation: none; }
+
+/* v3.0.6: Om klubben – kun afstand: golfbold og græs følger tæt efter billedkortene (ca. 24 px) */
+#page-om .page-body,
+#page-begynder .page-body { padding-bottom: 1.75rem; } /* v3.0.6: ca. 28 px til græssektionen på Om klubben og Begynderforløb */
