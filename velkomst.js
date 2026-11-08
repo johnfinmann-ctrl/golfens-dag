@@ -1,5 +1,5 @@
 /* ============================================================
-   Golfens Dag 2027 – velkomst.js (v2.9.0, TESTVERSION)
+   Golfens Dag 2027 – velkomst.js (v3.0.4, TESTVERSION)
    Ny velkomstanimation: bolden med Lyngbygaard Golf-logo ruller
    over green'en mod flaget (morgenlys-baggrund).
    - Bolden er en rigtig 3D-kugle (WebGL): dimples, lys, rotation
@@ -15,19 +15,19 @@
   // ── CONFIG ───────────────────────────────────────────────
   const CONFIG = {
     SESSION_KEY: 'gd2027_intro_v1',
-    BG_SRC: 'assets/images/velkomst-golfbane.webp?v=2.9.0',
-    DECAL_SRC: 'assets/images/lyngbygaard-logo-decal.webp?v=2.9.0',
-    FALLBACK_BALL_SRC: 'assets/images/lyngbygaard-golfbold.webp?v=2.9.0',
+    BG_SRC: 'assets/images/velkomst-golfbane.webp?v=3.0.4',
+    DECAL_SRC: 'assets/images/lyngbygaard-logo-decal.webp?v=3.0.4',
+    FALLBACK_BALL_SRC: 'assets/images/lyngbygaard-golfbold.webp?v=3.0.4',
     BG_W: 1529, BG_H: 860,          // baggrundsbilledets pixelmål
     FLAG_BASE: [765, 628],          // hul/flagstangens fod i billedet
     FLAG_RECT: [758, 388, 790, 468],// flagdug + stang-top (x0,y0,x1,y1) i billedet
     FOCUS_Y: 560,                   // lodret fokus ved beskæring
     T_BG_FADE: 500,
     T_BALL_START: 350,
-    T_BALL_END: 3900,
-    T_TEXT: 2300,
+    T_BALL_END: 3200,
+    T_TEXT: 3350,        // teksten vises først, når bolden er stoppet
     T_SKIP: 700,
-    T_DISMISS: 5200,
+    T_DISMISS: 5500,
     T_DISMISS_REDUCED: 3200,
     ROLL_EASE: 2.3,                 // ease-out-eksponent (bolden bremser naturligt)
     DEPTH_K: 2.2,                   // perspektiv: skærm-y → jordplan-afstand
@@ -62,7 +62,7 @@
       margin: 0; padding: 0 1.25rem; text-align: center; text-wrap: balance;
       font-family: var(--font, 'Inter', system-ui, sans-serif); font-weight: 600;
       font-size: clamp(1.7rem, min(5.6vw, 8.5vh), 2.9rem); letter-spacing: .015em; line-height: 1.15; color: #0b3d2b;
-      text-shadow: 0 0 26px rgba(255,244,214,.9), 0 1px 2px rgba(255,248,230,.7);
+      text-shadow: 0 0 22px rgba(255,244,214,.95), 0 0 44px rgba(255,244,214,.8), 0 1px 2px rgba(255,248,230,.7);
       opacity: 0; transform: translateY(10px); filter: blur(6px);
       transition: opacity 1.1s ease, transform 1.1s ease, filter 1.1s ease; }
     #gd-intro .gdv-title::after { content: ''; display: block; width: 56px; height: 2px; margin: .75rem auto 0; background: #C9A45C; }
@@ -74,6 +74,7 @@
       -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); -webkit-tap-highlight-color: transparent; }
     #gd-intro .gdv-skip.show { opacity: 1; }
     #gd-intro .gdv-skip:hover, #gd-intro .gdv-skip:focus-visible { background: rgba(8,40,26,.8); outline: 2px solid #C9A45C; outline-offset: 2px; }
+    @media (min-aspect-ratio: 11/10) { #gd-intro .gdv-title { font-size: clamp(1.4rem, min(3.4vw, 8.5vh), 2.9rem); } }
     @media (prefers-reduced-motion: reduce) {
       #gd-intro .gdv-title { transform: none; filter: none; transition: opacity .8s ease; }
     }

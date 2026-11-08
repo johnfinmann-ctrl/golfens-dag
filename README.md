@@ -1,19 +1,30 @@
-# Golfens Dag 2026 – Lyngbygaard Golfklub
+# Golfens Dag 2027 – Lyngbygaard Golfklub
 
 ## Filer
 - `index.html` – App struktur (rør ikke uden grund)
 - `style.css` – Design og layout
 - `app.js` – **Al konfiguration redigeres her**
+- `intro.js` – Ken Burns-velkomstskærm (golfbolde, "KOM I GANG") + mikroanimation på Begynderforløb
 - `manifest.json` – PWA manifest
-- `service-worker.js` – Offline-understøttelse
+- `service-worker.js` – Offline-understøttelse og cacheversionering
 - `icon-192.png` / `icon-512.png` – App-ikoner
+
+> Mappen `golfens-dag-2026/` indeholder en tidligere parallel version.
+> Den publiceres ikke og må ikke slettes – se leveringsrapporten for baggrund.
 
 ## Deployment – GitHub Pages
 
-1. Opret et nyt repository, f.eks. `golfens-dag-2026`
+1. Repository: `golfens-dag` (already oprettet)
 2. Upload alle filer til repository-roden
-3. Gå til **Settings → Pages → Branch: main / root**
-4. Appen er live på: `https://johnfinmann-ctrl.github.io/golfens-dag-2026/`
+3. **Settings → Pages → Branch: main / root**
+4. Appen er live på: `https://johnfinmann-ctrl.github.io/golfens-dag/`
+
+### Ved enhver ny deploy
+Bump versionsnummeret tre steder, ellers risikerer besøgende at blive
+siddende med gamle filer i deres cache:
+1. `CACHE_NAME` i `service-worker.js`
+2. `?v=` på `style.css`, `app.js` og `intro.js` i `index.html`
+3. `APP_VERSION` i `app.js` (styrer også footer-versionsnummeret automatisk)
 
 ## Rediger indhold (app.js)
 
@@ -34,7 +45,7 @@ const clubConfig = {
 const beginnerCourses = [
   {
     name: "Hold 7A",
-    start: "17. marts 2026",         // Startdato
+    start: "17. marts 2027",         // Startdato
     dates: ["17/3","24/3","31/3"],   // Alle datoer
     price: "2.500 kr.",
     seats: "16 pladser",
@@ -47,8 +58,9 @@ const beginnerCourses = [
 ## Admin-panel
 
 - Tryk ⚙️ nederst til højre i appen
-- PIN: **1234**
-- Ændringer gemmes automatisk i localStorage på enheden
+- PIN: **1234** – kun en let afskærmning, **ikke** sikker adgangskontrol (koden ligger i klientkoden)
+- Adminpanelet er kun en **lokal forhåndsvisning**: ændringer gemmes i localStorage på den enkelte enhed og opdaterer ikke appen for andre besøgende
+- Permanente ændringer til alle besøgende kræver redigering af `app.js` (og senere evt. Supabase)
 
 ## PWA – installation
 

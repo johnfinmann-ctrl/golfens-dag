@@ -98,7 +98,7 @@ const clubCards = [
 // APP ENGINE – rør ikke nedenfor medmindre du ved hvad du gør
 // ============================================================
 
-const APP_VERSION = '2.9.0';
+const APP_VERSION = '3.0.4';
 const APP_UPDATED = '2026-11-04';
 
 const STORAGE_KEY = 'golfensdag2027_config';
@@ -466,7 +466,7 @@ const POPUP_KEY = 'gd2027_popup_v1';
   });
 })();
 
-// --- v2.9.0: golfbolden nederst triller ind over græsset (bevægelse + rotation i takt) ---
+// --- v3.0.4: golfbolden nederst triller ind over græsset (bevægelse + rotation i takt) ---
 (function () {
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
@@ -497,3 +497,4 @@ const POPUP_KEY = 'gd2027_popup_v1';
   }, { threshold: [0, 0.6] });
   document.querySelectorAll('.gd-ballwrap').forEach(function (w) { io.observe(w); });
 })();
+
